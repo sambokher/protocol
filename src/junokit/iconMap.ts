@@ -111,7 +111,7 @@ export const iconMap = {
     ionic: "send-outline",
     material: "send",
     heroicons: "paper-airplane",
-    iconoir: "send",
+    iconoir: "send-diagonal",
   },
   heart: {
     feather: "heart",
@@ -849,5 +849,12 @@ export const iconMap = {
     material: "pause",
     heroicons: "pause",
     iconoir: "pause-solid",
+  },
+  'filter': {
+    feather: 'filter',
+    ionic: 'filter-outline',
+    material: 'filter',
+    heroicons: 'filter',
+    iconoir: 'filter-list',
   },
 };

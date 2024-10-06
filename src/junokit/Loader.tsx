@@ -29,8 +29,8 @@ export default function Loader({
     "12px": "border",
     "16px": "border-2",
     "20px": "border-[3px]",
-    "24px": "border-4",
-    "28px": "border-[5px]",
+    "24px": "border-2px",
+    "28px": "border-[3px]",
   };
   // border-current
   const useColor = color ? color : "current";

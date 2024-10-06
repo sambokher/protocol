@@ -15,6 +15,11 @@ export { default as Pagination } from "./Pagination";
 export { default as InputText } from "./InputText";
 export { default as Alert } from "./Alert";
 export { default as Select } from "./Select";
+export { default as ProductCard } from "./ProductCard";
+export { default as Search } from "./Search";
+export { default as HeaderLink } from "./HeaderLink";
+export { default as ToggleSwitch } from "./ToggleSwitch";
+export { default as TextArea } from "./TextArea";
 
 export type ComponentName =
   | "AppShell"
@@ -33,4 +38,9 @@ export type ComponentName =
   | "Pagination"
   | "InputText"
   | "Alert"
-  | "Select";
+  | "Select"
+  | "ProductCard"
+  | "Search"
+  | "HeaderLink"
+  | "ToggleSwitch"
+  | "TextArea"

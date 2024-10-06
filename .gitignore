@@ -25,7 +25,7 @@ dist-ssr
 
 *.tsbuildinfo
 
-out/pb_public/app
+out/pb_public
 out/pb_data
 out/pb_migrations
 out/pocketbase

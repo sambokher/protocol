@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import ButtonIcon from './ButtonIcon';
 import InputText from './InputText';
 
-type InputWithoutSize = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>;
-type SearchProps = InputWithoutSize & {
+
+type SearchProps = {
     state?: 'default' | 'disabled' | 'error' | 'success',
     bgColor?: 'none' | 'base-0' | 'base-50' | 'base-100' | 'current-5' | 'current-10',
     size?: 'small' | 'medium' | 'large',
@@ -16,9 +16,9 @@ type SearchProps = InputWithoutSize & {
     
     /* React Input Props (subset) */
     value?: string,
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void,
-    onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void,
+    onChange?: any,
+    onBlur?: any,
+    onFocus?: any,
     placeholder?: string,
 }
 export default function Search({
@@ -32,7 +32,7 @@ export default function Search({
         __juno = {},
         
         /* React Input Props (subset) */
-        value: controlledValue,
+        value,
         onChange,
         onBlur,
         onFocus,
@@ -40,19 +40,16 @@ export default function Search({
 
         }: SearchProps ) {
 
-    const [value, setValue] = useState<string>(controlledValue); 
     const [isFocused, setIsFocused] = useState(false);
 
     // Handle input change event
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
         onChange && onChange(e); // Call parent's onChange if provided
     };
 
     // Handle clear button click event
     const handleClear = () => {
-        setValue('');
-        onChange && onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>); // Trigger onChange with empty value
+        onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>); // Trigger onChange with empty value
     };
 
     // Handle input focus event

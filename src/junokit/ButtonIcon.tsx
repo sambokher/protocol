@@ -33,7 +33,7 @@ export default function ButtonIcon({
   attributes,
   listeners,
 }: ButtonIconProps) {
-  const buttonStyles = `flex flex-row items-center relative transition-all flex-shrink-0 flex-grow-0 box-border`;
+  const buttonStyles = `flex flex-row items-center relative transition-all duration-75 flex-shrink-0 flex-grow-0 box-border`;
 
   const isDisabled = state == "disabled";
   const isLoading = state == "loading";

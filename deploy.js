@@ -1,12 +1,18 @@
 #!/usr/bin/env node
 /* global process:readonly */
 import ftp from "basic-ftp";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import config from "./deploy.config.js";
 import minimist from "minimist";
 
-const isVerbose = minimist(process.argv.slice(2)).verbose || false;
+const args = minimist(process.argv.slice(2));
+const isVerbose = args.verbose || false;
+const hooksOnly = args.hooks || false;
+  
+if (hooksOnly) {
+  console.log('uploading only pb_hooks');
+}
 
 if (typeof config.project !== "string" || config.project === "") {
   console.log('"project" in ./deploy.config.js is not set');
@@ -43,8 +49,10 @@ async function main() {
       // secure: true,
     });
 
-    await uploadDirectory(client, "./out/pb_public", `/${config.project}/pb_public`);
     await uploadDirectory(client, "./out/pb_hooks", `/${config.project}/pb_hooks`);
+    if (!hooksOnly) {
+      await uploadDirectory(client, "./out/pb_public", `/${config.project}/pb_public`);
+    }
     console.log("Upload complete!");
   } catch (err) {
     console.error("FTP error:", err);

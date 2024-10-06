@@ -81,3 +81,26 @@ textarea {
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   font-family: var(--mainFont) !important; 
 }
+
+/* Hide the arrows for number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+
+@keyframes fadeInDown {
+  0% {
+      transform: translateY(88%) scale(0.9); /* Start above and slightly larger */
+      opacity: 0; /* Fully transparent */
+  }
+  100% {
+      transform: translateY(100%) scale(1); /* End at natural position and size */
+      opacity: 1; /* Fully opaque */
+  }
+}

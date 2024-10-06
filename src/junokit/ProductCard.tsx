@@ -1,6 +1,7 @@
 import Icon from './Icon';
-import { MediaImage } from 'iconoir-react';
+import { Iconoir, MediaImage } from 'iconoir-react';
 import { useMemo } from 'react';
+import ButtonIcon from './ButtonIcon';
 
 type  ProductCardProps = {
     title?: string,
@@ -13,14 +14,15 @@ type  ProductCardProps = {
     imageSrc?: string,
     rating?: string,
     tag?: string,
-    priceNote?: string,
+    isFavorite?: boolean,
+    onClick?: () => void,
+    onFavorite?: () => void,
     __juno?: any
 }
 
 export default function ProductCard({
         title = "Product Name",
         descriptionFirstLine = "Description line 1",
-        descriptionSecondLine,
         width = '100%',
         corners = 'md',
         textSize = 'small',
@@ -28,17 +30,20 @@ export default function ProductCard({
         imageSrc = null,
         rating,
         tag,
-        priceNote,
+        isFavorite, 
+        onClick,
+        onFavorite,
         __juno = {}
     }: ProductCardProps) {
     
 
-    const sizeStyles = `w-full h-auto ${textSize == 'small' ? 'text-sm' : 'text-base'}`
+    const sizeStyles = `w-full h-auto ${textSize == 'small' ? 'text-xs' : 'text-sm'}`
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}
 
-    const classes = `flex flex-col items-stretch justify-start gap-3 ${sizeStyles}`
+    const classes = `flex flex-col items-stretch justify-start gap-3 group ${sizeStyles}`
     
-    const contentClasses = `flex flex-col flex-grow`
+    const font = textSize == 'small' ? 'text-sm' : 'text-md';
+    const contentClasses = `flex flex-col flex-grow relative ${font} gap-0.5`
     
     const noImage = !imageSrc;
     const imageStyles = useMemo(() => ({
@@ -48,8 +53,7 @@ export default function ProductCard({
 
     
     const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
-    const titleFont = textSize == 'small' ? 'text-base' : 'text-lg';
-    const smallerFont = textSize == 'small' ? 'text-xs' : 'text-sm';
+    
 
 
     return (
@@ -57,9 +61,12 @@ export default function ProductCard({
         className={`${classes} ${__juno?.outlineStyle} ${__juno?.tagStyle}`}
         {...__juno?.attributes}
         style={{maxWidth: width}}
+        onClick={onClick}
         >
         {/* IMAGE */}
-        <div className={`relative w-full aspect-square flex items-center justify-center bg-current-10 ${cornerStyles}`} style={imageStyles}>
+        <div className={`relative w-full aspect-square flex items-center justify-center bg-current-10 
+             md:hover:scale-[1.02] transition-all duration-75 cursor-pointer
+            ${cornerStyles}`} style={imageStyles}>
             
             {/* TAG */}
             {tag && 
@@ -67,47 +74,52 @@ export default function ProductCard({
                 {tag}
             </div>}
                 
-            {/* ICON */}
-            {<div className='absolute top-1.5 right-2 rounded-full transition-all cursor-pointer p-2 hover:bg-base-0'>
-                <Icon icon={'heart'} />
-            </div>}
         {noImage && <MediaImage width={60} height={60} style={{opacity: '0.3'}} />}
+
+        { onFavorite &&
+                <div className={`absolute top-2 right-2 transition-all bg-base cursor-pointer ${isFavorite ? '' : 'md:opacity-0 md:group-hover:opacity-100'}`} >
+                <ButtonIcon
+                    style={isFavorite ? 'filled' : 'light'}
+                    color={isFavorite ? 'warning' : 'base-200'}
+                    icon='heart'
+                    isPill
+                    size='small'
+                    onClick={e => {e.stopPropagation(); onFavorite()}}
+                />
+            </div>}
         </div>
         
         {/* Description */}
         <div className={contentClasses}>
-        
-        {/* Title */}
-        <div className={`mb-sm flex flex-row gap-2 justify-between items-center ${titleFont}`}>
-            <h3 className={`font-semibold`} style={truncateStyle}>
-                {title}
-            </h3>
-            {rating && <div className='flex-shrink-0 flex flex-row items-center gap-0.5'>
-                <Icon icon='star' className='flex-shrink-0 scale-75'/>
-                {rating}
-            </div>}
-        </div>
-
-        {/* Description Lines */}
-        {descriptionFirstLine && <span className={`${smallerFont} font-normal truncate overflow-ellipsis`} style={truncateStyle}>
-            {descriptionFirstLine}
-        </span>}
-        {descriptionSecondLine && <span className={`${smallerFont} font-light`} style={truncateStyle}>
-            {descriptionSecondLine}
-        </span>}
-
-        {/* Price and Price Note */}
-        {price && 
-            <div className={`mt-2 flex flex-row gap-1 items-end items-baseline ${smallerFont}`}>
-                <span style={truncateStyle} className={`font-semibold ${titleFont}`}>
-                    {price}
-                </span>
-                <span style={truncateStyle}>
-                    {priceNote}
-                </span>
+            
+            {/* Title */}
+            <div className={`mb-sm flex flex-row gap-2 justify-between items-center`}>
+                <h3 className={`font-medium`} style={truncateStyle}>
+                    {title}
+                </h3>
+                {rating && <div className='flex-shrink-0 flex flex-row items-center gap-0.5'>
+                    <Icon icon='star' className='flex-shrink-0 scale-75'/>
+                    {rating}
+                </div>}
             </div>
-        }
-        </div>
+
+            {/* Description Lines */}
+            {descriptionFirstLine && <span className={`font-light opacity-70 truncate overflow-ellipsis`} style={truncateStyle}>
+                {descriptionFirstLine}
+            </span>}
+            
+
+            {/* Price and Price Note */}
+            {price && 
+                <div className={`flex flex-row gap-1 items-end items-baseline truncate font-medium`} style={truncateStyle}>
+                        {price}
+                </div>
+            }
+            
+            
+            </div>
+
+            
         </div>
     );
 }

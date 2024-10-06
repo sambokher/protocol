@@ -77,11 +77,11 @@ export default function Select({
       stateStyles = hasOutline
         ? open
           ? `border border-accent`
-          : `border border-base-300`
+          : `border border-base-200`
         : "border border-transparent";
       break;
     case "disabled":
-      stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? "border border-base-300" : ""}`;
+      stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? "border border-base-200" : ""}`;
       break;
     case "error":
       stateStyles = `text-warning-content ${hasOutline ? "border border-warning" : ""}`;
@@ -96,7 +96,7 @@ export default function Select({
 
   const classes = `w-full flex items-center justify-between truncate ellipsis box-border font-medium select-none ${sizeStyles} ${heightStyle} ${cornerStyles} ${bgStyles} ${stateStyles}`;
   const labelTextSize = size == "small" ? `text-xs` : size == "large" ? `text-lg` : `text-sm`;
-  const labelClasses = `${labelTextSize} font-medium`;
+  const labelClasses = `${labelTextSize} !font-normal`;
 
   const messageTextColor =
     state == "error" ? "text-warning" : state == "success" ? "text-success" : "text-base-content";
@@ -110,7 +110,7 @@ export default function Select({
           ? "min-w-[200px]"
           : "min-w-[160px]";
   const gapStyles = size == "small" ? "gap-0.5" : size == "large" ? "gap-1.5" : "gap-1";
-  const wrapperClasses = `flex flex-col ${widthStyle} ${gapStyles} relative ${open ? "z-50" : ""}`;
+  const wrapperClasses = `flex flex-col ${widthStyle} max-w-full ${gapStyles} relative ${open ? "z-50" : ""}`;
 
   const RightIconComponent =
     rightIcon !== "none" ? <Icon icon={rightIcon} className={`flex-shrink-0 flex-grow-0 opacity-80 scale-75`} /> : null;
@@ -120,7 +120,9 @@ export default function Select({
   const optionsBorderRadius = size === "small" ? "rounded" : size === "large" ? "rounded-lg" : "rounded-md";
   const smallerRadius = size === "small" ? "rounded-sm" : size === "large" ? "rounded-md" : "rounded";
 
-  const optionsClasses = `w-full absolute mt-2 p-0.5 gap-0.5 bg-base-0 overflow-hidden ${optionsBorderRadius} ${shadowStyles} ring-[0.5px] ring-inset ring-current-10`;
+  const optionsClasses = `w-full absolute mt-2 p-0.5 gap-0.5 bg-base-0 overflow-hidden ${optionsBorderRadius} ${shadowStyles} ring-[0.5px] ring-inset ring-current-10
+  -bottom-1 translate-y-full z-10 left-0
+  `;
   const optionSizeStyles =
     size == "small"
       ? `py-1 px-2 gap-1.5 text-xs min-w-[120px]`
@@ -130,26 +132,32 @@ export default function Select({
 
   const optionClasses = `${optionSizeStyles} hover:bg-current-10 transition-all duration-75 ease-in-out cursor-default ${smallerRadius}`;
 
+  function handleClick(e) {
+    if (state === "disabled") return;
+    e.stopPropagation();
+    setOpen(!open);
+  }
   return (
     <div {...attributes} {...listeners} className={wrapperClasses}>
       {label && <label className={labelClasses}>{label}</label>}
       <div
         className={classes}
         ref={dropdownRef}
-        onClick={(e) => {
-          e.stopPropagation();
-          setOpen(!open);
-        }}
+        onClick={(e) => handleClick(e)}
       >
         {selectedOption ? (
-          selectedOption?.label || selectedOption?.value
+          <span className={"overflow-hidden truncate"}>{selectedOption?.label || selectedOption?.value}</span>
         ) : (
           <span className={"text-current-70"}>{placeholder}</span>
         )}
 
         {RightIconComponent}
         {open && (
-          <div className={optionsClasses} style={{ position: "absolute", top: "100%", left: 0, zIndex: 100 }}>
+          <div className={optionsClasses} 
+            style={{ 
+              
+              animation: 'fadeInDown 100ms ease-in-out'
+              }}>
             {options.map((option, index) => (
               <div key={index} className={optionClasses} onClick={() => onChange(option.value)}>
                 {option?.label || option?.value || option.toString()}

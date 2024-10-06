@@ -5,8 +5,9 @@ import { IconNameType } from "./iconMap";
 type HeaderLinkProps = {
     text?: string,
     fontWeight?: 'auto' | 'light' | 'normal' | 'medium' | 'semibold',
-    leftIcon?: 'chevron-down' | 'plus';
-    rightIcon?: 'chevron-down' | 'plus';
+    style?: 'default' | 'buttons',
+    leftIcon?: IconNameType,
+    rightIcon?: IconNameType,
     size?: 'small' | 'medium' | 'large',
     width?: 'auto' | 'full',
     dropdownBgColor?: 'base-0' | 'base-100' | 'base-200' | 'none',
@@ -14,6 +15,7 @@ type HeaderLinkProps = {
     showDropdown?: boolean,
     onClick?: () => void,
     defaultIconSet?: string,
+    isActive?: boolean,
     children?: React.ReactNode,
     openDirection?: 'downward-right' | 'downward-left',
     // openBehavior?: 'onHover' | 'onClick',
@@ -27,9 +29,11 @@ export default function HeaderLink({
         leftIcon,
         rightIcon = null,
         size = 'medium',
+        style = 'default',
         width = 'auto',
         dropdownBgColor = 'base-0',
-        background = null,
+        background,
+        isActive = false,
         showDropdown = false,
         onClick = () => {},
         children,
@@ -63,7 +67,12 @@ export default function HeaderLink({
         setOpen(showDropdown);
     }, [showDropdown]);
 
-    const classes = `relative flex-shrink-0 flex items-center justify-center hover:bg-current-10 rounded-md`
+    const hoverStyles = {
+        'buttons' : `hover:bg-current-5`,
+        'default' : !isActive ? `opacity-70 hover:opacity-100` : ''
+    }
+     
+    const classes = `relative flex-shrink-0 flex items-center justify-center rounded-md transition-all duration-75 select-none ${hoverStyles[style]}`
 
     return (
         <div

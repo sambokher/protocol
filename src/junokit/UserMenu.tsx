@@ -40,14 +40,14 @@ export default function UserMenu({
   const [isOpen, setIsOpen] = useState(false);
 
   const sizeStylesMap = {
-    small: `py-1.5 px-1.5 text-xs`,
-    medium: `py-2 px-2.5 text-sm`,
-    large: `py-2.5 px-3.5 text-base`,
+    small: `p-px md:py-1.5 md:px-1.5 text-xs`,
+    medium: `p-0.5 md:py-2 md:px-2.5 text-sm`,
+    large: `p-1 md:py-2.5 md:px-3.5 text-base`,
   };
 
   const gapStyles = isCollapsed ? "gap-0" : size == "small" ? "gap-1.5" : size == "large" ? "gap-2.5" : "gap-2";
-  const imageSize = size == "small" ? "20px" : size == "large" ? "28px" : "24px";
-  const bgStyles = isActive || isOpen ? "bg-current-5" : "hover:bg-current-5";
+  const imageSize = size == "small" ? "24px" : size == "large" ? "32px" : "28px";
+  const bgStyles = isActive || isOpen ? "bg-current-5" : "md:hover:bg-current-5";
   const cornerStyles = isCollapsed
     ? "rounded-full"
     : size == "small"
@@ -62,7 +62,7 @@ export default function UserMenu({
   const IconComponent = icon ? (
     <Icon
       icon={icon}
-      className="scale-75 opacity-0 group-hover:opacity-100 hover:scale-90 transition-all cursor-pointer"
+      className="scale-75 opacity-0 md:group-hover:opacity-100 md:hover:scale-90 transition-all cursor-pointer"
     />
   ) : null;
 
@@ -90,29 +90,20 @@ export default function UserMenu({
     <div className={classes} {...attributes} {...listeners} onClick={handleClick} ref={dropdownRef}>
       <div className={`${gapStyles} flex items-center`} style={{ order: avatarPosition == "left" ? -2 : 2 }}>
         <Avatar
-          initials={name}
+          initials={name.toUpperCase()}
           bgColor={color}
           imageSrc={imageSrc}
           size={imageSize}
           type={avatarType}
           hoverEffect={false}
         />
-        {name && (
-          <div
-            className={`${isCollapsed ? "w-0 opacity-0" : `w-auto ${isActive ? "opacity-100" : "opacity-80"}`}
-                transition-all whitespace-nowrap truncate text-ellipsis  select-none
-                ${size == "small" ? "text-xs" : "text-sm"} font-medium `}
-            style={{ order: avatarPosition == "left" ? 2 : -2 }}
-          >
-            {name}
-          </div>
-        )}
       </div>
 
       {isOpen && children && (
         <div
           className={`absolute -bottom-1 translate-y-full right-0 bg-base-0 shadow-md p-1 border-[0.5px] border-base-200 rounded-md z-10
-        flex flex-col items-stretch min-w-full animate-fadeInDown transition-all duration-150`}
+        flex flex-col items-stretch min-w-full transition-all duration-150`}
+        style={{animation: 'fadeInDown 100ms ease-in-out'}}
         >
           {children}
         </div>

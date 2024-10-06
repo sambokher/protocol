@@ -27,9 +27,8 @@ type ButtonProps = {
   marginTop?: "4px" | "6px" | "8px" | "12px" | "16px" | "24px" | "32px";
   hideOnMobile?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-
-  attributes?: Record<string, unknown>;
-  listeners?: Record<string, unknown>;
+  isPill?:  boolean;
+  extraClasses?: string;
 };
 
 export default function Button({
@@ -42,13 +41,12 @@ export default function Button({
 
   size = "medium",
   width = "auto",
-
+  isPill,
   marginTop,
   state = "default",
   onClick = () => {},
   hideOnMobile = false,
-  attributes,
-  listeners,
+  extraClasses = "",
 }: ButtonProps) {
   const isDisabled = state == "disabled";
   const isLoading = state == "loading";
@@ -110,12 +108,15 @@ export default function Button({
     size == "small" ? `h-7 px-1.5 gap-1 text-xs` : size == "large" ? `h-12 px-3 gap-2.5 text-base` : sizeStyles;
 
   const widthStyle = width == "auto" ? `w-auto` : `w-${width}`;
-  const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md";
+  const cornerStyles = isPill ? "rounded-full" : size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md";
 
   const classes = `${hideOnMobile ? "hidden md:flex" : ""}
         relative flex flex-row items-center transition-all duration-75 box-border cursor-pointer justify-between
         ${fontStyles} ${typeStyles} ${sizeStyles} ${cornerStyles} ${widthStyle}
-        ${isDisabled ? "opacity-50 saturate-50 !cursor-not-allowed" : ""}`;
+        ${isDisabled ? "opacity-50 saturate-50 !cursor-not-allowed" : ""} 
+        ${extraClasses}`
+        
+        ;
 
   const iconSize = size == "small" ? "16px" : size == "large" ? "24px" : "20px";
   const iconWidth = size == "small" ? "w-4 h-4" : size == "large" ? "w-6 h-6" : "w-5 h-5";
@@ -137,12 +138,12 @@ export default function Button({
     <button
       type="button"
       className={classes}
-      {...attributes}
-      {...listeners}
       style={{ marginTop: marginTop }}
       onClick={(e) => !isDisabled && onClick(e)}
     >
-      <div className={`flex flex-row items-center justify-end flex-grow ${isLoading ? "invisible" : ""}`}>
+      <div className={`flex flex-row items-center justify-end flex-grow ${isLoading ? "invisible" : ""}
+      ${color == "current" && style == "filled" ? "text-base-0 mix-blend-difference" : ""}
+      `}>
         {LeftIconComponent}
       </div>
       <div className="flex-shrink-0 max-w-full box-border">
@@ -167,7 +168,9 @@ export default function Button({
           {text}
         </span>
       </div>
-      <div className={`flex flex-row items-center justify-end flex-grow ${isLoading && "invisible"}`}>
+      <div className={`flex flex-row items-center justify-end flex-grow ${isLoading && "invisible"}
+      ${color == "current" && style == "filled" ? "text-base-0 mix-blend-difference" : ""}
+      `}>
         {RightIconComponent}
       </div>
     </button>

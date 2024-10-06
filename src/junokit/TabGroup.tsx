@@ -69,7 +69,7 @@ export default function TabGroup({
 
     // !bg-current-10 !hover:bg-base-100 // !text-primary !hover:text-primary
     // !bg-primary/10 !bg-accent/10 !bg-base-content/10 !bg-base-700/10 !bg-base-500/10 !bg-base-300/10 !bg-base-100/10
-    const activeStyles = style == 'buttons' ? `!bg-current-10 !hover:bg-current-10 text-${selectColor} !opacity-100` : `text-${selectColor} !opacity-100` 
+    const activeStyles = style == 'buttons' ? `!bg-current-10 !hover:bg-current-10 text-${selectColor} !opacity-100` : `bg-current-5 !hover:bg-current-10 text-${selectColor} !opacity-100` 
     
     const tabRefs = useRef([]);
     

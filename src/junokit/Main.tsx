@@ -61,7 +61,7 @@ function Main({
 
   const outerClasses = `flex flex-col flex-grow w-full relative ${alignMain} ${fontColor} ${fontSize} ${marginStyles}`;
 
-  const innerClasses = `flex ${direction} flex-grow w-full z-0 relative  ${bgStyles} ${paddingStyles} ${gapStyles} ${alignItemsStyles} ${justifyContentStyles} ${cornerStyles}`;
+  const innerClasses = `flex ${direction} flex-grow w-full z-0  ${bgStyles} ${paddingStyles} ${gapStyles} ${alignItemsStyles} ${justifyContentStyles} ${cornerStyles}`;
 
   return (
     <div
