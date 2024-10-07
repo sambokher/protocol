@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Alert } from "../../junokit/index";
 
 declare global {
@@ -11,6 +11,7 @@ declare global {
 export default function Stripe() {
   const navigate = useNavigate();
   const searchParams = useSearchParams()[0];
+  const [error, setError] = useState(false);
 
   useEffect(() => {    
     const checkoutSessionId = searchParams.get('csid');
@@ -20,13 +21,21 @@ export default function Stripe() {
     }
     
     const fetchToken = async () => {
-      await fetch(`/api/hupost/stripe/${checkoutSessionId}`, { method: "POST" });
+      const response = await fetch(`/api/hupost/stripe/${checkoutSessionId}`, { method: "POST" });
+      if (!response.ok) {
+        const retry = await fetch(`/api/hupost/stripe/${checkoutSessionId}`, { method: "POST" });
+        if (!retry.ok) {
+          setError(true);
+          return;
+        }
+      }
       window.plausible('Complete Payment');
       navigate('/my-listings');
-      return;        
     }
     fetchToken().catch(console.error);
   }, []);
-
+  if (error) {
+    return <Alert text={`The payment was successful but unfortunately there was an error whilу publishing the post. Please reach out to us so we can publish the post manually.`} type="error" size="medium" style="light" width="auto" />;
+  }
   return <Alert text={`Processing...`} type="info" size="medium" style="light" width="auto" />;
 }
