@@ -128,7 +128,6 @@ routerAdd('POST', '/api/hupost/stripe/:id', async (c) => {
   if (!id) {
     return c.noContent(400);
   }
-  const key = "sk_test_51Q56wVJYW9ctHc8SdeDPIINQFjoTSXHGG9O2Z1tqsiUWOWbtH7HaHCms2TpGBzf4ws9aEGet9xBKbRslIzg6Ecwt00iHfCvBU0";
 
   const Base64 = {
       _keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
@@ -191,7 +190,7 @@ routerAdd('POST', '/api/hupost/stripe/:id', async (c) => {
     url: `https://api.stripe.com/v1/checkout/sessions/${id}`,
     method: "GET",
     headers: {
-      "Authorization": `Basic ${Base64.encode(key + ':')}`
+      "Authorization": `Basic ${Base64.encode(process.env.STRIPE_KEY + ':')}`
     },
     timeout: 120
   });
