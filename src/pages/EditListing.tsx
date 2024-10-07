@@ -163,7 +163,9 @@ export default function EditListing() {
           <Button 
             size={'medium'} 
             text={'Checkout with Stripe'} style='filled'
-            onClick={() => {window.location.assign(`https://buy.stripe.com/test_9AQ3cW79Q2Wr2t23ce?client_reference_id=${listing.id}` )}}
+            onClick={() => {
+              window.location.assign(`https://buy.stripe.com/5kAdUD9Wa43xdUs5kk?client_reference_id=${listing.id}` )}}
+              
             extraClasses='plausible-event-name=Click+to+Checkout'  
           />}
           secondaryButton={<Button text={'Cancel'} size={'medium'} style='ghost'   onClick={() => setPaymentPopup(false)}/>}

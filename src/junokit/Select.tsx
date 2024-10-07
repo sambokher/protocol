@@ -94,7 +94,7 @@ export default function Select({
   const heightStyle = size == "small" ? "h-7" : size == "large" ? "h-12" : "h-9";
   const bgStyles = bgColor && bgColor !== "none" ? `bg-${bgColor}` : "bg-base-100 text-base-content";
 
-  const classes = `w-full flex items-center justify-between truncate ellipsis box-border font-medium select-none ${sizeStyles} ${heightStyle} ${cornerStyles} ${bgStyles} ${stateStyles}`;
+  const classes = `w-full flex items-center justify-between truncate ellipsis box-border font-medium !select-none ${sizeStyles} ${heightStyle} ${cornerStyles} ${bgStyles} ${stateStyles}`;
   const labelTextSize = size == "small" ? `text-xs` : size == "large" ? `text-lg` : `text-sm`;
   const labelClasses = `${labelTextSize} !font-normal`;
 
