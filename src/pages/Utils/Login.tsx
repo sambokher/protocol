@@ -58,7 +58,7 @@ export default function Login() {
     return*/
 
     try {
-      const response = await fetch('/api/hupost/otp', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/hupost/otp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

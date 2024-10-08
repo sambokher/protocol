@@ -21,9 +21,9 @@ export default function Stripe() {
     }
     
     const fetchToken = async () => {
-      const response = await fetch(`/api/hupost/stripe/${checkoutSessionId}`, { method: "POST" });
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/hupost/stripe/${checkoutSessionId}`, { method: "POST" });
       if (!response.ok) {
-        const retry = await fetch(`/api/hupost/stripe/${checkoutSessionId}`, { method: "POST" });
+        const retry = await fetch(`${import.meta.env.VITE_API_URL}/api/hupost/stripe/${checkoutSessionId}`, { method: "POST" });
         if (!retry.ok) {
           setError(true);
           return;

@@ -8,4 +8,5 @@ export default defineConfig({
     outDir: "out/pb_public",
     sourcemap: false,
   },
+  envDir: '.'
 });

@@ -287,7 +287,7 @@ function ContactModal({setContactModal, title, price, listingId}) {
           return;
         }
 
-        const response = await fetch(`/api/hupost/message/${listingId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/hupost/message/${listingId}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

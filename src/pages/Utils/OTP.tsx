@@ -41,7 +41,7 @@ export default function OTP() {
     }
     
     const fetchToken = async () => {
-      const response = await fetch('/api/hupost/otp_verify', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/hupost/otp_verify`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ code, email }),
