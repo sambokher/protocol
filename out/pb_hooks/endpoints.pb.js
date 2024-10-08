@@ -196,6 +196,9 @@ routerAdd('POST', '/api/hupost/stripe/:id', async (c) => {
     timeout: 120
   });
   console.log('--- STRIPE RESPONSE ', id, res.statusCode);
+  if (res.statusCode !== 200) {
+    return c.noContent(500);  
+  }
   const stripeResponse = res.json;
   const listingId = stripeResponse.client_reference_id;
   console.log('--- PROCESSING ', listingId);
