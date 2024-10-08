@@ -33,7 +33,7 @@ routerAdd('POST', '/api/hupost/otp_verify', (c) => {
   const data = $apis.requestInfo(c).data;
   const { code, email } = data;
   if (!code || !email) {
-    return c.string(400, `${email} ${code} not found`);
+    return c.string(404, `${email} ${code} not found`);
   }
 
   const dao = $app.dao();
@@ -52,17 +52,18 @@ routerAdd('POST', '/api/hupost/otp_verify', (c) => {
     console.log('GOT ', storedCode);
     console.log('HAS ', code);
     if (storedCode !== code) {
-      return c.string(400, `${code} not found`);
+      return c.string(404, `${code} not found`);
     }
 
     const created = record.created.time().unixMilli();
     const now = Date.now()
     if (now - created > 1800000) {
-      return c.string(400, `${code} expired`);
+      console.log(`${code} expired`);
+      return c.string(403, `The magic link expired. Please login again to request a new one`);
     }
   } catch (e) {
     console.error(`Error confirming otp: ${e}`);
-    return c.string(400, `error confirming otp: ${code}`);
+    return c.string(500, `error confirming otp: ${code}`);
   }
 
   const userRecord = (() => {
@@ -86,7 +87,7 @@ routerAdd('POST', '/api/hupost/otp_verify', (c) => {
   })();
 
   if (!userRecord) {
-    return c.string(400, 'no record created');
+    return c.string(500, 'no record created');
   }
 
   return $apis.recordAuthResponse($app, c, userRecord);

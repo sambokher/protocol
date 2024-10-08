@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, InputText, Logo, Alert } from "../../junokit/index";
 
-type State = 'pending' | 'error' | 'ok';
+type State = 'pending' | 'genericError' | 'OTPExpired' | 'ok';
 
 type Response = {
   token: string;
@@ -22,7 +22,8 @@ type AlertProps = {
 const alertProps: AlertProps = {
   pending: {type: "info", text: "Verifying..."},
   ok: { type: "success", text: "You have been logged in. Click the logo if you aren't redirected automatically" },
-  error: { type: "error", text: "Error occurred. Try again" }};
+  genericError: { type: "error", text: "Error occurred. Try again." },
+  OTPExpired: { type: "error", text: "The magic link expired. Try again to get a new one." }};
 
 export default function OTP() {
   const { pb } = usePocketBase();
@@ -36,7 +37,7 @@ export default function OTP() {
     const code = searchParams.get('code');
     const email = searchParams.get('email');
     if (!code || !email) {
-      setState('error');
+      setState('genericError');
       return;
     }
     
@@ -46,8 +47,12 @@ export default function OTP() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ code, email }),
         });
+      if (response.status === 403) {
+        setState('OTPExpired');
+        return;
+      }
       if (!response.ok) {
-        setState('error');
+        setState('genericError');
         return;        
       }
       let parsed: Response;
@@ -55,7 +60,7 @@ export default function OTP() {
         parsed = await response.json();
       } catch (e) {
         console.log(e);
-        setState('error');
+        setState('genericError');
         return;
       }
       if (response.ok) {
