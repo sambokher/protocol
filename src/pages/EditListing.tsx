@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button, ButtonIcon, InputText, ToggleSwitch, Select, TextArea, SegmentedSwitch, Loader, Icon } from '../junokit';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PBContext, usePocketBase } from '../contexts/PocketBase';
 import { categories, compressImage, getStatus, schools } from './Utils/helpers';
 import DatePicker from '../junokit/DatePicker';
-import Checkbox from '../junokit/Checkbox';
+import ReactDOM from 'react-dom';
 import Status from '../junokit/Status';
 import Popover from '../junokit/Popover';
 
@@ -151,27 +151,36 @@ export default function EditListing() {
   }
 
   const [paymentPopup, setPaymentPopup] = useState(false);
+
+  function renderPopover() {
+    return (
+      <Popover
+        title='Payment Required'
+        text='Posts in Housing or Jobs are $5'
+        primaryButton={
+        <Button 
+          size={'medium'} 
+          text={'Checkout with Stripe'} style='filled' width={isMobile ? 'full' : 'auto'}
+          onClick={() => {
+            window.location.assign(`https://buy.stripe.com/5kAdUD9Wa43xdUs5kk?client_reference_id=${listing.id}` )}}
+            
+          extraClasses='plausible-event-name=Click+to+Checkout'  
+        />}
+        secondaryButton={<Button text={'Cancel'} size={'medium'} style={isMobile ? 'light' : 'ghost'}
+        width={isMobile ? 'full' : 'auto'}   onClick={() => setPaymentPopup(false)}/>}
+        onClose={() => setPaymentPopup(false)}
+      />
+    )
+  }
+
   if (isLoading) return <div className='w-full h-full flex items-center justify-center'><Loader size='28px'/></div>;
 
   if (listing) return (
     <>
-    {paymentPopup &&
-        <Popover
-          title='Payment Required'
-          text='Posts in Housing or Jobs are $5'
-          primaryButton={
-          <Button 
-            size={'medium'} 
-            text={'Checkout with Stripe'} style='filled'
-            onClick={() => {
-              window.location.assign(`https://buy.stripe.com/5kAdUD9Wa43xdUs5kk?client_reference_id=${listing.id}` )}}
-              
-            extraClasses='plausible-event-name=Click+to+Checkout'  
-          />}
-          secondaryButton={<Button text={'Cancel'} size={'medium'} style='ghost'   onClick={() => setPaymentPopup(false)}/>}
-          onClose={() => setPaymentPopup(false)}
-        />
-    }
+        {paymentPopup ?
+      document.getElementById('portal-root') ? 
+      ReactDOM.createPortal(renderPopover(), document.getElementById('portal-root')) :
+      renderPopover() : null}
     <div className="flex flex-col w-full self-auto gap-5 items-stretch justify-start h-auto mx-auto">
         <div className="flex flex-col md:flex-row flex-nowrap w-full self-auto gap-3 items-stretch justify-start h-auto mb-2">
           <div className="flex flex-col flex-nowrap w-full self-auto gap-3 items-start justify-start h-auto">

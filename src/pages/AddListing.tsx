@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button, ButtonIcon, InputText, ToggleSwitch, Select, TextArea } from '../junokit';
 import { useNavigate } from 'react-router-dom';
 import { PBContext, usePocketBase } from '../contexts/PocketBase';
 import { categories, compressImage, schools } from './Utils/helpers';
 import Popover from '../junokit/Popover';
+import ReactDOM from 'react-dom';
 
 const listingTemplate = {
     id: null, 
@@ -139,23 +140,31 @@ export default function AddListing() {
   
   const navigate = useNavigate();
   const isMobile = window.innerWidth < 768;
+  function renderPopover() {
+    return (
+      <Popover 
+        title='Payment Required'
+        text='Posts in Housing or Jobs are $5'
+        primaryButton={
+        <Button size={'medium'} text={'Checkout with Stripe'} style='filled' width={isMobile ? 'full' : 'auto'}
+          onClick={() => handleSave({ ...newListing, status: 'draft'}, true)} 
+          extraClasses='plausible-event-name=Click+to+Checkout'  
+        />}
+        secondaryButton={<Button text={'Cancel'} size={'medium'} 
+        style={isMobile ? 'light' : 'ghost'}
+        width={isMobile ? 'full' : 'auto'}
+        onClick={() => setPaymentPopup(false)}/>}
+        onClose={() => setPaymentPopup(false)}
+      />
+    );
+  }
   return (
     <>
-    {paymentPopup &&
-        <Popover 
-          title='Payment Required'
-          text='Posts in Housing or Jobs are $5'
-          primaryButton={
-          <Button 
-            size={'medium'} 
-            text={'Checkout with Stripe'} style='filled'
-            onClick={() => {handleSave({ ...newListing, status: 'draft'}, true)}}
-            extraClasses='plausible-event-name=Click+to+Checkout'  
-          />}
-          secondaryButton={<Button text={'Cancel'} size={'medium'} style='ghost'   onClick={() => setPaymentPopup(false)}/>}
-          onClose={() => setPaymentPopup(false)}
-        />
-    }
+    {paymentPopup ?
+      document.getElementById('portal-root') ? 
+      ReactDOM.createPortal(renderPopover(), document.getElementById('portal-root')) :
+      renderPopover() : null}
+
     <div className="flex flex-col w-full self-auto gap-5 items-stretch justify-start h-auto mx-auto">
         <div className="flex flex-col md:flex-row flex-nowrap w-full self-auto gap-3 items-stretch justify-start h-auto mb-2">
           <div className="flex  flex-col flex-nowrap w-full self-auto gap-3 items-start justify-start h-auto">

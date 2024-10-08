@@ -30,12 +30,12 @@ export default function Popover({
 
     // Determine background styles
     const bgStyles = `bg-base-0 text-base-content`;
-    const borderStyles = `border border-base-300`;
-    const sizeStyles = `w-full max-w-[400px] min-h-[200px] max-h-[2/3] rounded-md`
+    const borderStyles = `md:border md:border-base-300`;
+    const sizeStyles = `w-full md:max-w-[400px] h-full md:h-auto min-h-[200px] md:max-h-[2/3] md:rounded-md`
 
     const classes  = `flex flex-col relative items-stretch md:mt-32 justify-start shadow-md mx-auto ${bgStyles} ${sizeStyles} ${borderStyles}`
 
-    const titleClasses = `flex flex-row items-start text-base font-medium w-full justify-between border-b border-base-200 px-3 py-2`
+    const titleClasses = `flex flex-row items-start text-lg md:text-base font-medium w-full justify-between border-b border-base-200 px-3 py-2`
     const noTitle = !title || title === ''
     return (
         /* Overlay */
@@ -59,12 +59,12 @@ export default function Popover({
             </h2>
         </div>}
 
-        <div className={`flex flex-col flex-grow justify-between px-3 py-2 pb-3 text-base ${noTitle ? 'pr-8' : '' }`}>
+        <div className={`flex flex-col flex-grow justify-between px-3 py-2 pb-3 text-lg md:text-base ${noTitle ? 'pr-8' : '' }`}>
             {text}
         </div>
         {/* Buttons */}
         {(primaryButton || secondaryButton) &&
-        <div className={`flex flex-row items-center mt-2 flex-grow-0 flex-shrink-0 justify-end gap-2 px-3 py-2`}>
+        <div className={`flex flex-row md:items-center mt-2 flex-grow-0 flex-shrink-0 md:justify-end gap-3 md:gap-2 p-5 md:px-3 md:py-2`}>
             {secondaryButton} 
             {primaryButton}
         </div>}
