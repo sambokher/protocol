@@ -245,7 +245,7 @@ export default function DiscoverPage() {
                         <ProductCard 
                             key={listing.id} 
                             title={listing.title} 
-                            price={`$${listing.price}`} 
+                            price={listing.price == 0 ? 'Free' : `$${listing.price}`} 
                             isFavorite={favorites?.includes(listing.id)}
                             descriptionFirstLine={formatTimeAgo(listing.published)}
                             imageSrc={listing.images && listing.images.length > 0 
