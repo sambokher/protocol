@@ -217,9 +217,9 @@ export default function DiscoverPage() {
                 
                 md:items-end justify-between h-auto`}>
                 <span className='text-sm text-base-500'>
-                    {searchQuery ? `${showPages.length} results`
+                    {searchQuery ? `${filteredListings.length} results`
                     :
-                    `${showPages.length} active listings`}
+                    `${filteredListings.length} active listings`}
                 </span>
                 <div className={`flex-grow-0 flex flex-row items-end gap-3
                 ${showFilters ? 'flex' : 'hidden md:flex'}

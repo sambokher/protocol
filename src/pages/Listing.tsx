@@ -187,7 +187,7 @@ export default function Listing({editing=false}) {
                         {listing?.price && listing?.price > 0 ? `$${listing?.price}` : 'Free'}
                     </h1>
 
-                        <p className="whitespace-pre-wrap text-left min-h-40 flex-grow">
+                        <p className="whitespace-pre-wrap text-left min-h-40 flex-grow break-all">
                         {listing?.description}
                         </p>
 
