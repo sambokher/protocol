@@ -6,7 +6,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(({ mode }) => ({
   plugins: [react()],
   build: {
-    outDir: "out/pb_public", // Custom output directory
+    outDir: "docs", 
     sourcemap: false,
   },
   envDir: ".",
