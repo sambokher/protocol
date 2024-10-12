@@ -64,8 +64,7 @@ function Main({
         <div 
         className={`${outerClasses} ${__juno?.outlineStyle}`}
         {...__juno?.attributes}
-        style={{ minHeight: '100%',  // 'overflow: 'auto'' it should be managed by AppShell
-            }}
+        // style={{ minHeight: '100%', }}
         >
         <div 
         className={`${innerClasses} ${__juno?.outlineStyle} ${__juno?.tagStyle}`}

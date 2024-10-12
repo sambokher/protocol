@@ -52,7 +52,7 @@ function AppWrapper() {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <AppShell pageBackground="base-100">
+    <AppShell pageBackground="base-0">
       <Main gap="24px" width="stretch" corners="md" marginX="12px" marginY="12px" paddingX="48px" paddingY="48px" textSize="base" direction="flex-col" selfAlign="center" alignItems="start" background="base-0" justifyContent="start">
         <Outlet />
       </Main>

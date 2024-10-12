@@ -62,7 +62,9 @@
     --border-radius-3xl: 1.5rem;    
 }
     
-
+.overflow-scroll {
+    overflow-y: scroll;
+}
 
 /* IMPORTANT TO MAINTAIN FONT FAMILY */
 input,

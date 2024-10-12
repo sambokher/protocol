@@ -23,7 +23,6 @@ function ListView({ setView }) {
     { id: 1, name: 'Hyperglycemia Detection', status: 'Active', type: 'Manual' },
     { id: 2, name: 'Hypoglycemia Alert System', status: 'Active', type: 'AI' },
     { id: 3, name: 'Complex Diabetes Risk Monitoring', status: 'Active', type: 'Manual' },
-    { id: 4, name: 'HbA1c Management Review', status: 'Active', type: 'Manual' },
     { id: 5, name: 'Hypertension & Diabetes Control', status: 'Active', type: 'AI' },
     { id: 6, name: 'Ketone Risk Alert', status: 'Draft', type: 'Manual' },
     { id: 7, name: 'Sudden Weight Fluctuation Monitoring', status: 'Draft', type: 'Manual' },
@@ -57,16 +56,16 @@ function ListView({ setView }) {
       {groups.map(group => {
         const filteredAutomations = automations.filter(group.filter);
         return (
-          <div key={group.title} className="flex flex-col gap-4 w-full text-base mt-4">
-            <h2 className="text-xl font-semibold">{group.title}</h2>
+          <div key={group.title} className="flex flex-col gap-3 w-full text-base mt-4">
+            <h2 className="text-base font-semibold">{group.title}</h2>
             {filteredAutomations.map(automation => (
-              <div key={automation.id} className="flex items-center justify-between bg-base-50 p-3 rounded-md gap-2 ring-[0.5px] ring-current-5 shadow-xs group hover:ring-current-10 hover:bg-base-100/10 hover:shadow-sm transition-all duration-150 cursor-pointer"
+              <div key={automation.id} className="flex items-center justify-between bg-base-50 px-3 py-2 rounded-md gap-2 ring-[0.5px] ring-current-5 shadow-xs group hover:ring-current-10 hover:bg-base-100/10 hover:shadow-sm transition-all duration-150 cursor-pointer"
                 onClick={() => setView('single')}>
                 <div className="flex items-center gap-2">
-                  <Icon icon={automation.type === 'AI' ? 'flare' : 'arrow-right'}
+                  <Icon icon={automation.type === 'AI' ? 'flare' : 'flash'}
 
-                  className={`text-xs ${automation.type === 'AI' ? 'text-primary' : ''}`} />
-                  <span className="text-base font-medium">{automation.name}</span>
+                  className={`text-sm scale-90 ${automation.type === 'AI' ? 'text-primary' : ''}`} />
+                  <span className="text-sm font-medium">{automation.name}</span>
                 </div>
                 <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100">
                   <ButtonIcon icon="chevron-right" style="ghost" size="small" />
