@@ -22,13 +22,13 @@ export const staff = {
     nurses: {
       johnson: {
         name: 'Nurse Johnson',
-        image: 'https://images.unsplash.com/photo-1622519868964-761f3f2c38e8?ixlib=rb-4.0.3&crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&w=500&q=80',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg3OmvskLm_g-nLHS6TQeUmsRyJkx-Ko8hJw&s',
         role: 'Head Nurse',
         department: 'Cardiology',
       },
       williams: {
         name: 'Nurse Williams',
-        image: 'https://images.unsplash.com/photo-1620133280463-1eb2c758c277?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&w=500&q=80',
+        image: 'https://media.gettyimages.com/id/1306528459/photo/hispanic-male-nurse-headshot-portrait.jpg?s=612x612&w=gi&k=20&c=eZho2MLVk5ysl5CDbhXmYHa0evaskmcaeX55EMDNmoY=',
         role: 'Nurse Practitioner',
         department: 'Dermatology',
       },
@@ -36,12 +36,12 @@ export const staff = {
     admin: {
       anderson: {
         name: 'Admin Anderson',
-        image: 'https://images.unsplash.com/photo-1601950647433-9f7d5c40e99b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&w=500&q=80',
+        image: 'https://media.istockphoto.com/id/1345972457/photo/a-female-nurse-looking-at-the-camera.jpg?s=612x612&w=0&k=20&c=uQbnJmSUN5bwJiiQdCMzizmW4EHR__NlTULHwjdE3L8=',
         role: 'Office Manager',
       },
       taylor: {
         name: 'Admin Taylor',
-        image: 'https://images.unsplash.com/photo-1517363898879-d5a6b3f6e3c9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&w=500&q=80',
+        image: 'https://media.istockphoto.com/id/1323990963/photo/a-young-nurse-looking-at-the-camera-in-blue-medical-scrubs.jpg?s=612x612&w=0&k=20&c=hfyRZ3hKYa4pNAYDm2YjUeDsI5b966dnXIHgiXLNlpU=',
         role: 'Front Desk Coordinator',
       },
     },

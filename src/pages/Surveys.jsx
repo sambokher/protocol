@@ -31,6 +31,7 @@ export default function Surveys() {
     const navigate = useNavigate();
     const typeFormLink = 'https://ijfdpyldqg1.typeform.com/to/BiELCMB4'
     const typeFormEdit = 'https://admin.typeform.com/form/BiELCMB4/create?block=2547b125-d827-4290-810d-9c4e53ac25a1'
+    const typeFormAdd = 'https://admin.typeform.com/accounts/01FDQZEGQXADC9ES96TP64M6X7/workspaces/SmqQ6M'
     
     return (
       <>
@@ -51,7 +52,7 @@ export default function Surveys() {
               onChange={handleTabChange}
             />
             
-            <Button style="filled" text="Add Survey" size="small" onClick={() => window.open(typeFormEdit, '_blank')} />
+            <Button style="filled" text="Add Survey" size="small" onClick={() => window.open(typeFormAdd, '_blank')} />
           </div>
         
         <div className="flex flex-col flex-nowrap w-full self-auto gap-4 items-start justify-start h-auto">
@@ -71,7 +72,7 @@ export default function Surveys() {
 
               
               <div className="flex items-center gap-3">
-                <ButtonIcon size="small" style="ghost" icon="edit" />
+                <ButtonIcon size="small" style="ghost" icon="edit" onClick={(e) => {e.stopPropagation(); window.open(typeFormEdit, '_blank')}} />
                 <Button style="light" text="Preview" size="small" />
               </div>
             </div>
