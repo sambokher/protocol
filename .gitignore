@@ -24,9 +24,3 @@ dist-ssr
 *.sw?
 
 *.tsbuildinfo
-
-out/pb_public
-out/pb_data
-out/pb_migrations
-out/pocketbase
-deploy.config.js

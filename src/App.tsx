@@ -23,8 +23,6 @@ type Props = {
   children: ReactNode;
 };
 
-
-
 // <Route path="*" element={<Error error="NotFound" />} />
 
 const router = createBrowserRouter(
