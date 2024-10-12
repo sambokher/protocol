@@ -12,6 +12,11 @@ import {
 import { PBContext, PocketBaseProvider, usePocketBase } from "./contexts/PocketBase";
 import { AppShell, Main, Search, SidebarLink, UserMenu } from "./ui-kit/index.ts"
 import Appointments from "./pages/Appointments";
+import Surveys from "./pages/Surveys";
+import Protocols from "./pages/Protocols";
+import Team from "./pages/Team";
+import Patients from "./pages/Patients";
+import PatientExample from "./pages/PatientExample";
 import { IconType } from "./ui-kit/components/iconMap.ts";
 
 type Props = {
@@ -29,10 +34,11 @@ const router = createBrowserRouter(
         <Route path="/" element={ <Navigate to="/appointments" />} />
         
         <Route path="/appointments" element={ <Appointments />} />
-        <Route path="/team" element={ <Appointments />} />
-        <Route path="/protocols" element={ <Appointments />} />
-        <Route path="/surveys" element={ <Appointments />} />
-        <Route path="/patients" element={ <Appointments />} />
+        <Route path="/team" element={ <Team />} />
+        <Route path="/protocols" element={ <Protocols />} />
+        <Route path="/surveys" element={ <Surveys />} />
+        <Route path="/patients" element={ <Patients />} />
+        <Route path="/patient-example" element={ <PatientExample />} />
 
         
     </Route>,

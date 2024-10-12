@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Search, Button, ButtonIcon, TableWidget  } from "ui-kit/exports/react"
+import { Search, Button, ButtonIcon, TableWidget  } from "../ui-kit/index.ts"
 import PatientExample from "./PatientExample"
 import { patients, statusMap } from "./data"
 

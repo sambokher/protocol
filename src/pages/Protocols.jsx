@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Badge } from 'ui-kit/exports/react';
-import { Search } from 'ui-kit/exports/react';
-import { Main, Button, FlexBox, Icon, Status, ButtonIcon } from "ui-kit/exports/react";
+import { Button, Badge, Icon, Search, ButtonIcon } from "../ui-kit/index.ts"
 
 export default function Automations() {
   const [selectedAutomation, setSelectedAutomation] = useState(false);

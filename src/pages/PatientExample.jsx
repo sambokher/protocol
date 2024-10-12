@@ -1,9 +1,7 @@
 import { useState } from "react"
-import { TableWidget } from "ui-kit/exports/react";
-import { Button, TabGroup, Badge, Status } from "ui-kit/exports/react"
+import { Button, TabGroup, Badge, Status, Alert, TableWidget } from "../ui-kit/index.ts"
 import { statusMap } from "./data";
 import { Emoji, EmojiQuite, EmojiSad } from "iconoir-react";
-import { Alert } from "ui-kit/exports/react";
 
 export default function PatientExample({setShowPatient}) {
 

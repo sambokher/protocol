@@ -10,5 +10,5 @@ export default defineConfig(({ mode }) => ({
     sourcemap: false,
   },
   envDir: ".",
-  base: "/",
+  base: '/protocol/',
 }));

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Main, Button, FlexBox, Icon, ButtonIcon, TabGroup, Badge } from "ui-kit/exports/react";
+import { Main, Button, FlexBox, Icon, ButtonIcon, TabGroup, Badge } from "../ui-kit/index.ts"
 
-export default function Forms() {
+export default function Surveys() {
     const [activeTab, setActiveTab] = useState('patient-intake');
     const [forms, setForms] = useState({
       'patient-intake': [

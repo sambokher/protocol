@@ -1,12 +1,4 @@
-import {
-  Select,
-  InputText,
-  Button,
-  AvatarCard,
-  Tag,
-  Divider,
-  ButtonIcon,
-} from "ui-kit/exports/react";
+import { Select, InputText, Button, AvatarCard, Tag, Divider, ButtonIcon} from "../ui-kit/index.ts"
 import { doctors } from "./data";
 import React from "react";
 
