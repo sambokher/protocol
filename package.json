@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "gh-pages -d out/pb_public", 
     "preview": "vite preview",
-    "deploy": "gh-pages -d out/pb_public",
     "format": "npx prettier . --write",
     "lint": "eslint src"
   },
