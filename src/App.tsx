@@ -28,19 +28,16 @@ type Props = {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<AppWrapper />}>
-        
-        <Route path="/" element={ <Navigate to="/appointments" />} />
-        
-        <Route path="/appointments" element={ <Appointments />} />
-        <Route path="/team" element={ <Team />} />
-        <Route path="/protocols" element={ <Protocols />} />
-        <Route path="/surveys" element={ <Surveys />} />
-        <Route path="/patients" element={ <Patients />} />
-        <Route path="/patient-example" element={ <PatientExample />} />
-
-        
-    </Route>,
+      <Route path="/" element={<Navigate to="/appointments" />} />
+      <Route path="/appointments" element={<Appointments />} />
+      <Route path="/team" element={<Team />} />
+      <Route path="/protocols" element={<Protocols />} />
+      <Route path="/surveys" element={<Surveys />} />
+      <Route path="/patients" element={<Patients />} />
+      <Route path="/patient-example" element={<PatientExample />} />
+    </Route>
   ),
+  { basename: "/protocol" } // Add basename here for GitHub Pages
 );
 
 export default function App() {
