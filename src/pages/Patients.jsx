@@ -1,15 +1,10 @@
-import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 import { Search, Button, ButtonIcon, TableWidget  } from "../ui-kit/index.ts"
-import PatientExample from "./PatientExample"
 import { patients, statusMap } from "./data"
 
 
 
-export default function PatientsPage({singleView=true}) {
-
-    const [showPatient, setShowPatient] = useState(singleView)
-    
-
+export default function PatientsPage() {
 
     const columns = [
         {"type":"text","width":"40%","header":"Patient","accessor":"name","direction":"flex-row","alignItems":"center","isSortable":true,"hideOnMobile":false,"justifyContent":"start"},
@@ -29,12 +24,9 @@ export default function PatientsPage({singleView=true}) {
             }
         }
     }));
+    
+    const navigate = useNavigate();
 
-    if (showPatient) {
-        return <PatientExample setShowPatient={setShowPatient} />
-    }
-
-    //{"text":"Routine","color":"success","size":"small","showIndicator":true}
     return (
         
         <>
@@ -48,7 +40,7 @@ export default function PatientsPage({singleView=true}) {
             </div>
             <div className="flex flex-row flex-nowrap w-auto self-auto     gap-3   items-start justify-start h-auto   undefined undefined">
                 <ButtonIcon size="medium" icon="filter" style="ghost" />
-                <Button style="light" text="Table Action" size="medium" />
+                {/*<Button style="light" text="Table Action" size="medium" />*/}
                 <Button style="filled" text="Add Patient" size="medium" />
             </div>
             </div>
@@ -58,7 +50,7 @@ export default function PatientsPage({singleView=true}) {
             rowData={patientData}
             textSize="sm" 
             columnData={columns}
-            onRowClick={(row) => setShowPatient(true)}
+            onRowClick={() => navigate('/patient-example')}
                 //[{"type":"text","width":"40%","header":"Patient","accessor":"patient","direction":"flex-row","alignItems":"center","isSortable":true,"hideOnMobile":false,"justifyContent":"start"},{"type":"text","width":"30%","header":"Office","accessor":"office","direction":"flex-row","alignItems":"center","isSortable":true,"hideOnMobile":true,"justifyContent":"start"},{"type":"arrayOfObjects","width":"20%","header":"Status","accessor":"status","direction":"flex-col","alignItems":"center","isSortable":false,"hideOnMobile":true,"justifyContent":"start"}]} 
             cellPaddingX="12px" cellPaddingY="8px" 
             //hasRowSelect 

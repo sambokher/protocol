@@ -417,7 +417,8 @@ export default function TableWidget({
           paddingY={cellPaddingY} 
           onChange={() => console.log('Change page')} // change to your function
           currentPage={1} // add a variable
-          totalPages={8} // add a variable          
+          totalPages={8} // add a variable       
+          textSize={textSize}   
           />
 
       </td>

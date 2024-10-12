@@ -2,20 +2,21 @@ import { useState } from "react"
 import { Button, TabGroup, Badge, Status, Alert, TableWidget } from "../ui-kit/index.ts"
 import { statusMap } from "./data";
 import { Emoji, EmojiQuite, EmojiSad } from "iconoir-react";
+import { useNavigate } from "react-router-dom";
 
-export default function PatientExample({setShowPatient}) {
+export default function PatientExample() {
 
-  
-      const tabs = [
-        // {"label":"Overview","value":"overview"},
-        {"label":"Visits","value":"insights"},
-        {"label":"Forms","value":"forms"},
-        // {"label":"Treaments","value":"treatments"},
-        {"label":"Protocols","value":"protocols"},
+    const tabs = [
+      // {"label":"Overview","value":"overview"},
+      {"label":"Visits","value":"insights"},
+      {"label":"Forms","value":"forms"},
+      // {"label":"Treaments","value":"treatments"},
+      {"label":"Protocols","value":"protocols"},
 
-      ]
-      const [activeTab, setActiveTab] = useState('insights');
+    ]
+    const [activeTab, setActiveTab] = useState('insights');
 
+    const navitate = useNavigate()
     return (
       <>
       
@@ -27,7 +28,7 @@ export default function PatientExample({setShowPatient}) {
                 leftIcon="chevron-left"
                 size="small"
                 width="auto"
-                onClick={() => setShowPatient(false)}
+                onClick={()=> navitate('/patients')}
                 /></div>
                 <h1 className="text-3xl font-medium text-left flex gap-2 items-start">Matthew Collins</h1>
                 <div className="flex flex-row gap-2 w-full justify-between items-end">
@@ -43,10 +44,12 @@ export default function PatientExample({setShowPatient}) {
             </div>
             {activeTab === 'forms' && <FormsView />}      
             {activeTab === 'insights' && <ProgressView />}
+            {activeTab === 'protocols' && <ProtocolsView />}
 
       </>
   )
 }
+
 
 
 function FormsView() {
@@ -308,3 +311,12 @@ const ProgressView = () => {
   </div>
   </>
 );}
+
+
+function ProtocolsView() {
+  return (
+    <div>
+      This view will display protocols applied to this patient.
+    </div>
+  )
+}

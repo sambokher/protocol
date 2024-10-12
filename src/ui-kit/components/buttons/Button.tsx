@@ -105,7 +105,9 @@ type ButtonProps = {
             style={{marginTop: marginTop}}
             onClick={(e)=> !isDisabled && onClick(e)}
             >
-            <div className={`flex flex-row items-center justify-end flex-grow ${isLoading ? 'invisible' : ''}`}>
+            <div className={`flex flex-row items-center justify-end flex-grow ${isLoading ? 'invisible' : ''}
+            ${color == 'current' && style == 'filled' ? 'text-base-0 mix-blend-difference' : ''}
+            `}>
                 {LeftIconComponent}
             </div>
             <div className='flex-shrink-0 max-w-full box-border'>

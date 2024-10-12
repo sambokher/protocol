@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { AvatarCard, Status, MiniCalendar, Button, ButtonIcon, StepperArray, Alert } from "../ui-kit/index.ts"
 import { doctors, appointmentsData, statusMap } from "./data";
+import { useNavigate } from "react-router-dom";
 
 export default function Appointments(){
-  const [selectedApt, setSelectedApt] = useState(appointmentsData[0]);
+  const [selectedApt, setSelectedApt] = useState(appointmentsData[5]);
   return (
     <>
       <div className="flex flex-col w-full gap-2">
@@ -143,16 +144,12 @@ function Details({selectedApt}) {
         setProvider(selectedApt.doctor);
     }, [selectedApt]);
 
+    const navitate = useNavigate()
     return (
         <div className="flex flex-row w-full gap-6 text-sm">
-              
               <div className="flex flex-col w-full gap-3">
-                
                 <div className="flex flex-row items-center justify-between w-full">
-                    <h2 className="text-lg font-semibold hover:underline select-none"
-                    // onClick={() => setSelectedPage('Patients')}
-                    >{selectedApt.patient.name}</h2>
-
+                    <h2 className="text-lg font-semibold hover:underline select-none" onClick={()=> navitate('/patient-example')}>{selectedApt.patient.name}</h2>
                     <div className="flex flex-row gap-2 items-center">
                         <span className="hover:underline cursor-pointer mr-3">
                         <AvatarCard name={provider.name} type="image" imageSrc={provider.image} size="small"

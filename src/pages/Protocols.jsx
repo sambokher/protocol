@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { Button, Badge, Icon, Search, ButtonIcon } from "../ui-kit/index.ts"
+import CreateProtocol from './CreateProtocol';
 
 export default function Automations() {
-  const [selectedAutomation, setSelectedAutomation] = useState(false);
+  const views = ['single', 'list', 'create']
+  const [view, setView] = useState('list');
 
   return (
     <>
-      {selectedAutomation ? 
-      <SingleView 
-      setSelectedAutomation={setSelectedAutomation}
-      
-      /> : <ListView setSelectedAutomation={setSelectedAutomation} />}
+      {view == 'single' && <SingleView  setView={setView}/>}
+      {view == 'list' && <ListView setView={setView} />}
+      {view == 'create' && <CreateProtocol setView={setView} />}
     </>
   );
 };
 
 
 
-function ListView({ setSelectedAutomation }) {
+function ListView({ setView }) {
   // Set up automations data
   const automations = [
     { id: 1, name: 'Hyperglycemia Detection', status: 'Active', type: 'Manual' },
@@ -49,7 +49,7 @@ function ListView({ setSelectedAutomation }) {
           <Search width="auto" bgColor="base-0" hasOutline size="medium" placeholder="Search protocols" />
         </div>
         <div className="flex flex-row w-auto gap-3 items-start">
-          <Button style="filled" text="Create Protocol" size="medium" rightIcon="plus" />
+          <Button style="filled" text="Create Protocol" size="medium" rightIcon="plus" onClick={() => setView('create')} />
         </div>
       </div>
 
@@ -61,7 +61,7 @@ function ListView({ setSelectedAutomation }) {
             <h2 className="text-xl font-semibold">{group.title}</h2>
             {filteredAutomations.map(automation => (
               <div key={automation.id} className="flex items-center justify-between bg-base-50 p-3 rounded-md gap-2 ring-[0.5px] ring-current-5 shadow-xs group hover:ring-current-10 hover:bg-base-100/10 hover:shadow-sm transition-all duration-150 cursor-pointer"
-                onClick={() => setSelectedAutomation(true)}>
+                onClick={() => setView('single')}>
                 <div className="flex items-center gap-2">
                   <Icon icon={automation.type === 'AI' ? 'flare' : 'arrow-right'}
 
@@ -81,7 +81,7 @@ function ListView({ setSelectedAutomation }) {
 }
 
 
-function SingleView({ setSelectedAutomation }) {
+function SingleView({ setView }) {
   
   const [isEditing, setIsEditing] = useState(false);
 
@@ -96,7 +96,7 @@ function SingleView({ setSelectedAutomation }) {
               leftIcon="chevron-left"
               size="small"
               width="auto"
-              onClick={() => setSelectedAutomation(false)}
+              onClick={() => setView('list')}
               /></div>
               <h1 className="text-3xl font-medium text-left flex gap-2 items-start">Impending Diabetic Complications
             <Badge text='active' color='success' size='small' showIndicator={true}/>
