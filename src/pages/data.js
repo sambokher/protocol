@@ -18,6 +18,34 @@ export const doctors = {
     },
 }
 
+export const staff = {
+    nurses: {
+      johnson: {
+        name: 'Nurse Johnson',
+        image: 'https://images.unsplash.com/photo-1622519868964-761f3f2c38e8?ixlib=rb-4.0.3&crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&w=500&q=80',
+        role: 'Head Nurse',
+        department: 'Cardiology',
+      },
+      williams: {
+        name: 'Nurse Williams',
+        image: 'https://images.unsplash.com/photo-1620133280463-1eb2c758c277?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&w=500&q=80',
+        role: 'Nurse Practitioner',
+        department: 'Dermatology',
+      },
+    },
+    admin: {
+      anderson: {
+        name: 'Admin Anderson',
+        image: 'https://images.unsplash.com/photo-1601950647433-9f7d5c40e99b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&w=500&q=80',
+        role: 'Office Manager',
+      },
+      taylor: {
+        name: 'Admin Taylor',
+        image: 'https://images.unsplash.com/photo-1517363898879-d5a6b3f6e3c9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&w=500&q=80',
+        role: 'Front Desk Coordinator',
+      },
+    },
+  };
 
 
 export const statusMap = {

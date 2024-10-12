@@ -13,7 +13,7 @@ export default function Appointments(){
             <h1 className="text-lg xsfont-medium">October 10, 2024</h1>
             <div className="flex flex-row justify-between w-full gap-2 items-centet">
             <span>Thursday</span>
-            <div className="flex flex-row gap-2 w-52">
+            <div className="flex flex-row gap-0.5 w-52">
             <StepperArray 
                 size="small"
                 width="full" 
