@@ -10,6 +10,5 @@ export default defineConfig(({ mode }) => ({
     sourcemap: false,
   },
   envDir: ".",
-  // Use "/" for local dev, "/protocol/" for GitHub Pages
-  base: mode === "production" ? "/protocol/" : "/",
+  base: "/",
 }));
