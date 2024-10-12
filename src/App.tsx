@@ -77,7 +77,10 @@ function Sidebar() {
   const path = location.pathname as string;
 
     return (
-      <div className="flex flex-col relative flex-grow-0 z-40 flex-shrink-0 transition-all px-4 py-4 text-base-content text-base bg-base-50 gap-3 items-stretch justify-start    " style={{ order: '-2', width: '280px', maxWidth: '280px', minWidth: '280px', borderColor: 'color-mix(in srgb, var(--base-content) 12%, transparent)', minHeight: '100%' }}>
+      <div className="flex flex-col relative flex-grow z-40 flex-shrink-0 transition-all px-4 py-4 text-base-content text-base bg-base-50 gap-3 items-stretch justify-start    " 
+      style={{ order: '-2', width: '280px', maxWidth: '280px', minWidth: '280px', 
+      borderColor: 'color-mix(in srgb, var(--base-content) 12%, transparent)', minHeight: '100%',
+       }}>
   <div className="flex flex-row flex-nowrap w-full self-auto     gap-3   items-start justify-start h-auto    ">
     <div className="flex flex-col flex-nowrap w-full self-auto        items-stretch justify-start h-auto    ">
       <UserMenu name="Dr Ramos" size="medium" color="primary" icon="arrows-up-down" />

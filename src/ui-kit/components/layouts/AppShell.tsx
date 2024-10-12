@@ -29,8 +29,8 @@ export default function AppShell({
     const fontColorValue = `text-${fontColor}`;
     
     // Ensure that parent has h-screen or replace h-full to h-screen in the classes below
-    const outerClasses = `relative flex flex-col w-screen h-dvh max-h-screen flex-grow ${pageBgColor} ${fontColorValue}`;
-    const innerClasses = `relative flex flex-row w-full items-stretch flex-grow min-h-full self-${justifyContent} ${paddingStyles}`
+    const outerClasses = `relative flex flex-col w-screen min-h-screen flex-grow ${pageBgColor} ${fontColorValue}`;
+    const innerClasses = `relative flex flex-row w-full items-stretch flex-grow h-full self-${justifyContent} ${paddingStyles}`
     const mainClasses = `relative flex flex-col w-full items-stretch flex-grow overflow-scroll`;
 
     
