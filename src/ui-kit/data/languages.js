@@ -1,0 +1,22 @@
+export const languages = [
+  'English', 'Spanish', 'Mandarin', 'Hindi', 'Arabic', 'Portuguese', 
+  'Bengali', 'Russian', 'Japanese', 'Punjabi', 'German', 'Javanese', 
+  'Wu (Shanghainese)', 'Malay/Indonesian', 'Telugu', 'Vietnamese', 
+  'Korean', 'French', 'Marathi', 'Tamil', 'Urdu', 'Turkish', 
+  'Italian', 'Yue (Cantonese)', 'Thai', 'Gujarati', 'Jin', 
+  'Southern Min (Hokkien-Taiwanese)', 'Persian', 'Polish', 'Pashto', 
+  'Kannada', 'Xiang (Hunanese)', 'Malayalam', 'Sundanese', 'Hausa', 
+  'Odia (Oriya)', 'Burmese', 'Hakka', 'Ukrainian', 'Bhojpuri', 
+  'Tagalog (Filipino)', 'Yoruba', 'Maithili', 'Uzbek', 'Sindhi', 
+  'Amharic', 'Fula', 'Romanian', 'Oromo', 'Igbo', 'Azerbaijani', 
+  'Awadhi', 'Gan Chinese', 'Cebuano', 'Dutch', 'Kurdish', 
+  'Serbo-Croatian', 'Malagasy', 'Saraiki', 'Nepali', 'Sinhalese', 
+  'Chittagonian', 'Zhuang', 'Khmer', 'Turkmen', 'Assamese', 
+  'Madurese', 'Somali', 'Marwari', 'Magahi', 'Haryanvi', 
+  'Hungarian', 'Chhattisgarhi', 'Greek', 'Chewa', 'Deccan', 
+  'Akan', 'Kazakh', 'Northern Min', 'Sylheti', 'Zulu', 
+  'Czech', 'Kinyarwanda', 'Dhundhari', 'Haitian Creole', 'Eastern Min', 
+  'Ilocano', 'Quechua', 'Kirundi', 'Swedish', 'Hmong', 'Shona', 
+  'Uyghur', 'Hiligaynon/Ilonggo', 'Mossi', 'Xhosa', 'Belarusian', 
+  'Balochi', 'Konkani'
+];

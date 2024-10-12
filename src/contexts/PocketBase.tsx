@@ -25,7 +25,7 @@ export function PocketBaseProvider({ children }: React.PropsWithChildren) {
 
   useEffect(() => {
     try {
-      const pocketBase = new PocketBase("https://hupost.pockethost.io");
+      const pocketBase = new PocketBase("");
       
       // Disable auto-cancellation globally
       pocketBase.autoCancellation(false);
