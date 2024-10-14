@@ -52,12 +52,15 @@ function AppWrapper() {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <AppShell pageBackground="base-0">
-      <Main gap="24px" width="stretch" corners="md" marginX="12px" marginY="12px" paddingX="48px" paddingY="48px" textSize="base" direction="flex-col" selfAlign="center" alignItems="start" background="base-0" justifyContent="start">
-        <Outlet />
-      </Main>
+    <div className={`relative flex flex-row w-screen bg-yellow-100 h-screen overflow-hidden`}>
+        
       <Sidebar />
-    </AppShell>
+      <div className={`flex flex-col gap-6 flex-grow w-full h-full max-h-full justify-start overflow-y-scroll p-12 text-base bg-base-0 `}>    
+
+        <Outlet />
+      
+      </div>
+    </div>
   );
 }
 
@@ -79,7 +82,7 @@ function Sidebar() {
     return (
       <div className="flex flex-col relative flex-grow z-40 flex-shrink-0 transition-all px-4 py-4 text-base-content text-base bg-base-50 gap-3 items-stretch justify-start    " 
       style={{ order: '-2', width: '280px', maxWidth: '280px', minWidth: '280px', 
-      borderColor: 'color-mix(in srgb, var(--base-content) 12%, transparent)', minHeight: '100%',
+      borderColor: 'color-mix(in srgb, var(--base-content) 12%, transparent)', height: '100dvh',
        }}>
   <div className="flex flex-row flex-nowrap w-full self-auto     gap-3   items-start justify-start h-auto    ">
     <div className="flex flex-col flex-nowrap w-full self-auto        items-stretch justify-start h-auto    ">

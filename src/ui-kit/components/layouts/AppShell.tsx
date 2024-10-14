@@ -29,9 +29,9 @@ export default function AppShell({
     const fontColorValue = `text-${fontColor}`;
     
     // Ensure that parent has h-screen or replace h-full to h-screen in the classes below
-    const outerClasses = `relative flex flex-col w-screen min-h-screen flex-grow ${pageBgColor} ${fontColorValue}`;
-    const innerClasses = `relative flex flex-row w-full items-stretch flex-grow h-full self-${justifyContent} ${paddingStyles}`
-    const mainClasses = `relative flex flex-col w-full items-stretch flex-grow overflow-scroll`;
+    const outerClasses = `relative flex flex-col w-screen h-full flex-grow ${pageBgColor} ${fontColorValue}`;
+    const innerClasses = `relative flex flex-row w-full items-start flex-grow h-full self-${justifyContent} ${paddingStyles}`
+    const mainClasses = `relative flex flex-col w-full h-full items-stretch flex-grow`;
 
     
     // Define the groupedChildren object with string keys and arrays of ReactNode
@@ -93,10 +93,10 @@ export default function AppShell({
             {FeaturePanel}
             
             {/* Main Block */}
-            <div className={mainClasses} style={{minHeight: '100%', overflow: 'scroll'}}>
+            <div className={mainClasses} style={{minHeight: '100%', height: '100%', maxHeight: '100%', overflow: 'scroll'}}>
                 {Header}
                 {Hero}
-                <div className={`flex flex-row flex-grow w-full h-full justify-${justifyContent}`}>
+                <div className={`flex flex-row flex-grow w-full justify-${justifyContent}`}>
                     {MainArea}
                 </div>
                 {Footer}
