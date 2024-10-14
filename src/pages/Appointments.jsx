@@ -178,30 +178,23 @@ function Details({selectedApt}) {
                 <div className="w-full flex flex-col gap-0.5 mt-3">
                     <span className="text-sm opacity-70">Medications</span>
                     <ul className="list-disc pl-5">
-                        <li>Lisinopril 10mg (once daily)</li>
-                        <li>Metformin 500mg (twice daily for Type 2 Diabetes)</li>
-                        <li>Amlodipine 5mg (once daily for hypertension)</li>
+                        <li>Lisinopril 10mg (1/day)</li>
+                        <li>Metformin 500mg (2/day)</li>
+                        <li>Amlodipine 5mg (1/day)</li>
                     </ul>
                 </div>
 
 
                 <div className="w-full flex flex-col gap-0.5 mt-3 ">
-                    <span className="text-sm opacity-70">Recent Labs
-                    <a className="hover:underline cursor-pointer ml-3 text-xs">view all</a>
+                    <span className="text-sm opacity-70 upp">Recent Labs
                     </span>
                     <ul className="list-disc pl-5 mb-2">
-                        <li>Hemoglobin A1c: 7.1% (high, indicating poor glucose control)</li>
-                        <li>Cholesterol (Total): 210 mg/dL (borderline high)</li>
-                        <li>LDL Cholesterol: 130 mg/dL (high)</li>
-                        <li>Creatinine: 0.9 mg/dL (normal kidney function)</li>
-                        <li>Glucose (fasting): 145 mg/dL (elevated)</li>
+                        <li className="text-warning-focus">Hemoglobin A1c: 7.1%</li>
+                        <li className="text-error-focus">Cholesterol (Total): 210 mg/dL</li>
+                        <li className="text-warning-focus">LDL Cholesterol: 130 mg/dL (high)</li>
+                        <li>Creatinine: 0.9 mg/dL</li>
+                        <li className="text-error-focus">Glucose: 145 mg/dL</li>
                     </ul>
-                    <Alert
-                    type="warning"
-                    size="small"
-                    icon="warning"
-                    text="Recent labs show high cholesterol levels"
-                    />
                 </div>
                 
                 

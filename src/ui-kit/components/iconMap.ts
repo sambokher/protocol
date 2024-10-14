@@ -9,7 +9,7 @@ import {
     PlaySolid, Flash, ViewGrid, Book, LayoutLeft, Box, Shirt, ColorWheel, Palette, OpenNewWindow, EmojiSad, ArrowSeparateVertical, 
     FrameAltEmpty, Download, CompAlignLeftSolid, CompAlignRightSolid, AlignHorizontalCentersSolid, AlignHorizontalSpacingSolid, 
     CompAlignTopSolid, CompAlignBottomSolid, AlignVerticalCentersSolid, AlignVerticalSpacingSolid, Figma, PauseSolid, ArrowSeparate, 
-    Minus, Eye, EyeClosed, CreditCard, Lock, Shield, FilterList, PharmacyCrossTag
+    Minus, Eye, EyeClosed, CreditCard, Lock, Shield, FilterList, PharmacyCrossTag, NetworkLeft
 } from 'iconoir-react';
 // Missing: 
 // Video
@@ -127,7 +127,7 @@ const Iconoir = {
     PlaySolid, Flash, ViewGrid, Book, LayoutLeft, Box, Shirt, ColorWheel, Palette, OpenNewWindow, EmojiSad, ArrowSeparateVertical, 
     FrameAltEmpty, Download, CompAlignLeftSolid, CompAlignRightSolid, AlignHorizontalCentersSolid, AlignHorizontalSpacingSolid, 
     CompAlignTopSolid, CompAlignBottomSolid, AlignVerticalCentersSolid, AlignVerticalSpacingSolid, Figma, PauseSolid, ArrowSeparate, 
-    Minus, Eye, EyeClosed, CreditCard, Lock, Shield, FilterList, PharmacyCrossTag
+    Minus, Eye, EyeClosed, CreditCard, Lock, Shield, FilterList, PharmacyCrossTag, NetworkLeft
 }
 
 const Feather = {
@@ -218,7 +218,7 @@ export type IconType =
     | 'palette' | 'share' | 'sad' | "arrows-up-down" | 'frame' | 'download' | 'align-left' | 'align-right' 
     | 'align-hor-center' | 'align-hor-stretch' | 'align-top' | 'align-bottom' | 'align-vert-center' | 'align-vert-stretch' 
     | 'figma' | 'pause' | 'arrow-separate-vertical' | 'arrow-separate' | 'minus' | 'eye' | 'eye-off' | 'card' | 'lock' | 'shield' | 'question' | 'filter' 
-    | 'pharmacy'
+    | 'pharmacy' | 'mindmap'
 
 export type LibraryType = 'feather' | 'ionic' | 'material' | 'heroicons' | 'iconoir';
 
@@ -1142,6 +1142,13 @@ export const iconMap: IconMap = {
         heroicons: Heroicons.HiOutlineShoppingBag,
         iconoir: Iconoir.PharmacyCrossTag,
     },
+    'mindmap': {
+        feather: null,
+        ionic: null,
+        material: null,
+        heroicons: null,
+        iconoir: Iconoir.NetworkLeft,
+    }
 };
 
 export const allIconNames = Object.keys(iconMap);

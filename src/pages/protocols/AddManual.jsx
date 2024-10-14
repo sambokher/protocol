@@ -3,11 +3,7 @@ import { Button, TextArea } from "../../ui-kit/index.ts";
 import { useNavigate } from 'react-router-dom';
 import MindMap from './MindMap.jsx';
 
-
-
-export default function CreateAutomation({setView}) {
-
-
+export default function AddAIAgent({setView}) {
 
   const navigate = useNavigate()
   const [editable, setEditable] = useState(false)
@@ -18,12 +14,12 @@ export default function CreateAutomation({setView}) {
     <div className="flex flex-col w-full gap-2 justify-start items-start">
               <div className='-ml-2'>
               <Button 
-              text="Back to Automations"
+              text="Back to Protocols"
               style="link"
               leftIcon="chevron-left"
               size="small"
               width="auto"
-              onClick={() => navigate('/protocols')}
+              onClick={() => setView('list')}
               /></div>
               <h1 className="text-3xl font-medium text-left flex gap-2 items-start">Diabetes Diagnosis and Monitoring</h1>
           </div>

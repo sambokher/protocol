@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { Button, Badge, Icon, Search, ButtonIcon } from "../../ui-kit/index.ts"
-import CreateProtocol from './CreateProtocol';
+import AddManual from './AddManual.jsx';
 import MindMap from './MindMap.jsx';
+import AddAIAgent from './AddAI.jsx';
 
 export default function Automations() {
-  const views = ['single', 'list', 'create']
+  const views = ['single', 'list', 'addmanual', 'addai'];
   const [view, setView] = useState('list');
 
   return (
     <>
       {view == 'single' && <SingleView  setView={setView}/>}
       {view == 'list' && <ListView setView={setView} />}
-      {view == 'create' && <CreateProtocol setView={setView} />}
+      {view == 'addmanual' && <AddManual setView={setView} />}
+      {view == 'addai' && <AddAIAgent setView={setView} />}
     </>
   );
 };
@@ -49,7 +51,8 @@ function ListView({ setView }) {
           <Search width="auto" bgColor="base-0" hasOutline size="medium" placeholder="Search protocols" />
         </div>
         <div className="flex flex-row w-auto gap-3 items-start">
-          <Button style="filled" text="Create Protocol" size="medium" rightIcon="plus" onClick={() => setView('create')} />
+          <Button style="filled" text="Add Manual" size="medium" leftIcon='mindmap' rightIcon="plus" onClick={() => setView('addmanual')} />
+          <Button style="filled" text="AI Agent" size="medium" leftIcon='flare' rightIcon="plus" onClick={() => setView('addai')} />
         </div>
       </div>
 
@@ -63,7 +66,7 @@ function ListView({ setView }) {
               <div key={automation.id} className="flex items-center justify-between bg-base-50 px-3 py-2 rounded-md gap-2 ring-[0.5px] ring-current-5 shadow-xs group hover:ring-current-10 hover:bg-base-100/10 hover:shadow-sm transition-all duration-150 cursor-pointer"
                 onClick={() => setView('single')}>
                 <div className="flex items-center gap-2">
-                  <Icon icon={automation.type === 'AI' ? 'flare' : 'flash'}
+                  <Icon icon={automation.type === 'AI' ? 'flare' : 'mindmap'}
 
                   className={`text-sm scale-90 ${automation.type === 'AI' ? 'text-primary' : ''}`} />
                   <span className="text-sm font-medium">{automation.name}</span>
@@ -91,7 +94,7 @@ function SingleView({ setView }) {
     <div className="flex flex-col w-full gap-2 justify-start items-start">
               <div className='-ml-2'>
               <Button 
-              text="Back to Automations"
+              text="Back to Protocols"
               style="link"
               leftIcon="chevron-left"
               size="small"
