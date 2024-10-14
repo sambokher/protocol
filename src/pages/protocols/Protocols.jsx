@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Badge, Icon, Search, ButtonIcon } from "../ui-kit/index.ts"
+import { Button, Badge, Icon, Search, ButtonIcon } from "../../ui-kit/index.ts"
 import CreateProtocol from './CreateProtocol';
+import MindMap from './MindMap.jsx';
 
 export default function Automations() {
   const views = ['single', 'list', 'create']
@@ -114,39 +115,9 @@ function SingleView({ setView }) {
     High-risk alert for potential diabetic complications (e.g., retinopathy, nephropathy, or cardiovascular issues). 
     </div>
 
-    <MiroEmbed isEditing={isEditing} />
+    <MindMap editable={isEditing} />
   </>
 
   )
 
-}
-
-function MiroEmbed({ isEditing }) {
-  // Define the view-only and edit URLs
-  const viewUrl = "https://miro.com/app/live-embed/uXjVLTvQ5ZU=/?moveToViewport=155,-123,1459,823&embedId=98038948726&embedAutoplay=true";
-  const editUrl = "https://miro.com/app/live-embed/uXjVLTvQ5ZU=/?moveToViewport=155,-123,1459,823&embedId=98038948726&embedAutoplay=true";
-
-  return (
-    <div className="flex flex-col gap-4 w-full text-base h-full">
-      <iframe
-        width="100%"
-        height="100%"
-        src={isEditing ? editUrl : viewUrl}
-        allowFullScreen
-        allow={isEditing ? "fullscreen; clipboard-read; clipboard-write" : "fullscreen"}
-      ></iframe>
-    </div>
-  );
-}
-
-function FigJamEmbed({ isEditing }) {
-  // Define the view-only and edit URLs
-  
-  return (
-    <iframe style={{border: '1px solid rgba(0, 0, 0, 0.1)'}} width="100%" height="100%" className='rounded-md'
-    src="https://embed.figma.com/board/P1MEiSQT2tS7Zcsp5ZiEXy/Protocol-%2F-Naples?node-id=0-1&embed-host=share" 
-    allowFullScreen>
-
-    </iframe>
-  );
 }

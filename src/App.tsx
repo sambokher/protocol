@@ -13,7 +13,7 @@ import { PBContext, PocketBaseProvider, usePocketBase } from "./contexts/PocketB
 import { AppShell, Main, Search, SidebarLink, UserMenu } from "./ui-kit/index.ts"
 import Appointments from "./pages/Appointments";
 import Surveys from "./pages/Surveys";
-import Protocols from "./pages/Protocols";
+import Protocols from "./pages/protocols/Protocols.jsx";
 import Team from "./pages/Team";
 import Patients from "./pages/Patients";
 import PatientExample from "./pages/PatientExample";
