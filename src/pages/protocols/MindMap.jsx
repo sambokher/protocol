@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import ReactFlow, { Background, Controls, useNodesState, useEdgesState } from 'react-flow-renderer';
-import { mindMap } from '../data.jsx';
+import { diabetes, complexMap } from './maps.jsx';
 import { Button, TextArea } from "../../ui-kit/index.ts";
 
 export default function MindMap({editable=false, setEditable=()=>{}}) {
 
-    const [nodes, setNodes, onNodesChange] = useNodesState(mindMap?.nodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(mindMap?.edges);
+    const selectedMap = complexMap
+    const [nodes, setNodes, onNodesChange] = useNodesState(selectedMap?.nodes);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(selectedMap?.edges);
   
     
     const padding = '2'; // Adjust padding for compactness
