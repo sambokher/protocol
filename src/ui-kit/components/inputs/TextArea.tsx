@@ -71,8 +71,9 @@ export default function TextArea({
     const textSize = size == 'small' ? 'text-xs' : size == 'large' ? 'text-base' : 'text-sm';
     const cornerStyles = size == "small" ? "rounded" : size == "large" ? "rounded-lg" : "rounded-md"
     
+    const ringSize = size == 'small' ? '1' : size == 'large' ? '2' : '1.5'
     // default
-    let stateStyles = hasOutline ? `ring-1 ring-inset ring-base-200 focus-within:ring-[1.5px] focus-within:ring-accent` : '';
+    let stateStyles = hasOutline ? `ring-1 ring-inset ring-current-10 focus-within:ring-[${ringSize}px] focus-within:ring-primary` : `ring-1 ring-inset ring-transparent focus-within:ring-[${ringSize}px] focus-within:ring-primary`;
     switch (state) {
         case 'disabled':
             stateStyles = `bg-base-100 opacity-70 cursor-not-allowed ${hasOutline ? 'ring-1 ring-inset ring-base-200' : ''}`
@@ -126,7 +127,8 @@ export default function TextArea({
                 {...reactProps}
 disabled={state == 'disabled'}
                 className={`w-full text-${textAlign} border-0 border-transparent focus:outline-none focus:ring-0 font-medium placeholder:font-normal
-                ${textColor} placeholder-current-70 bg-transparent ${state == 'disabled' && 'cursor-not-allowed'} ${inputPaddingX} resize-none 
+                ${textColor} placeholder-current-70 
+                bg-transparent ${state == 'disabled' && 'cursor-not-allowed'} ${inputPaddingX} resize-none 
                 `}
                 />  
                 <span className={`flex-shrink-0 ${RightIconComponent && suffix ? `pr-${gapUnit}` : ''}`}>{suffix}</span>
