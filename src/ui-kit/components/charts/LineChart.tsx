@@ -28,6 +28,8 @@ type LineChartProps = {
     backgroundColor?: 'base-0' | 'base-100' | 'base-200' | string, 
     emptyState?: boolean,
     emptyMessage?: string,
+    bottomDomain?: number | 'auto',
+    topDomain?: number | 'auto',
     data?: {
         keys: string[],
         values: any[][]
@@ -36,20 +38,22 @@ type LineChartProps = {
 }
 
 export default function LineChartComponent({
-        backgroundColor = null,
+        backgroundColor,
         width = 'full',
         height = '120px',
         lineColor = 'primary',
         lineWidth = '2',
         lineType = 'wavy',
         showDots = true,
-        showLabels = false,
-        showYAxis = false,
-        showXAxis = true,
-        showGrid = true,
+        showLabels,
+        showYAxis,
+        showXAxis= true,
+        showGrid,
         data = dummyData,  
-        emptyState = false,
-        emptyMessage = 'Data may take up to 24 hrs to show',
+        emptyState,
+        emptyMessage = 'empty message',
+        bottomDomain = 'auto',
+        topDomain = 'auto',
         __juno = {}
       }: LineChartProps) {
 
@@ -63,16 +67,15 @@ export default function LineChartComponent({
     
     const emptyStyles = `flex flex-col justify-center items-center px-sm text-sm font-medium gap-2 rounded-md`
 
-    function transformData(keys, values) {
-        return values?.map(values => {
-            return values?.reduce((obj, val, index) => {
+    function transformData(keys: string[], values: any[][]) {
+        return values?.map((values: any[]) => {
+            return values?.reduce((obj: any, val: any, index: number) => {
                 obj[keys[index]] = val;
                 return obj;
             }, {});
         });
     }
     const sampleData = data ? transformData(data?.keys, data?.values) : []
-    const totalValue = sampleData?.reduce((acc, curr) => acc + curr[data?.keys?.[1]], 0)
     
     const sideMargins = (!showYAxis && !showLabels && !showDots && !showXAxis) ? 0 : 20
 
@@ -90,7 +93,7 @@ export default function LineChartComponent({
                 <LineChart data={sampleData} margin={{ top: 20, right: sideMargins, bottom: 0, left: sideMargins }}>
                     {showGrid && <CartesianGrid strokeDasharray="1 3" />}
                     {showXAxis && <XAxis dataKey={data?.keys[0]} tick={{ fontSize: '12px'}}/>}
-                    {showYAxis && <YAxis width={20} tick={{ fontSize: '12px'}}/>}
+                    {showYAxis && <YAxis width={20} tick={{ fontSize: '12px'}} domain={[bottomDomain, topDomain]} />}
                     <Tooltip />
                     <Line 
                         type={lineType === 'wavy' ? 'monotone' : 'linear'} 
@@ -99,6 +102,7 @@ export default function LineChartComponent({
                         strokeWidth={lineWidth} // Configurable line width
                         dot={showDots} // Configurable dots visibility
                         activeDot={{ r: 4 }}
+                        
                     >
                     {showLabels && <LabelList dataKey={data?.keys[1]} position="top" style={{ fill: `var(--${lineColor})`, fontSize: 10 }} />}
                     </Line>

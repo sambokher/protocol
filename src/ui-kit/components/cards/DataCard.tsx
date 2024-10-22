@@ -15,13 +15,13 @@ type DataCardProps = {
 }
 
 export default function DataCard({
-        title = "Metric",
-        value = "$10,500",
-        changeValue = "+12%",
-        changeColor = null,
+        title = "metric",
+        value = "value",
+        changeValue,
+        changeColor,
         textSize = 'small',
-        icon = 'chart-up',
-        helpText = null,
+        icon,
+        helpText,
         __juno = {}
     }: DataCardProps) {
 
@@ -30,8 +30,8 @@ export default function DataCard({
 
     const classes = `flex flex-row items-stretch justify-start gap-3 ${sizeStyles}`
 
-    const titleFont = textSize == 'small' ? 'text-base' : 'text-lg';
-    const smallerFont = textSize == 'small' ? 'text-sm' : 'text-base';
+    const titleFont = textSize == 'small' ? 'text-sm' : 'text-base';
+    const smallerFont = textSize == 'small' ? 'text-xs' : 'text-sm';
     
     const IconComponent = icon ? <Icon icon={icon} /> : null;
 
