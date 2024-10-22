@@ -21,7 +21,7 @@ export default function Badge({
     const styleMap = {
         'filled': `bg-${color} text-${color == 'base-200' ? 'base-content' : 'base-0'} `,
         'outline': `text-${color}-content ring-1 ring-inset ring-${color}`,
-        'light': color == 'base-200' ? `bg-base-100 text-base-content` : color == 'base-700' ? `bg-base-100 text-base-content` : `text-${color}-content bg-${color}-surface`
+        'light': color?.startsWith('base') ? `bg-current-10 text-base-content` : `text-${color}-content bg-${color}-surface`
     }
     
     const sizeStyleMap = {
@@ -31,7 +31,7 @@ export default function Badge({
     
     const sizeStyles = sizeStyleMap[size]
 
-    const classes = `flex font-medium items-center flex-shrink-0 justify-center leading-tight self-${alignSelf} ${sizeStyles} ${styleMap[style]}`
+    const classes = `flex font-normal items-center flex-shrink-0 justify-center leading-tight self-${alignSelf} ${sizeStyles} ${styleMap[style]}`
     const truncateStyle = { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 120 }
 
     return (

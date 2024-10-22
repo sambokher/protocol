@@ -16,7 +16,7 @@ import Surveys from "./pages/Surveys";
 import Protocols from "./pages/protocols/Protocols.jsx";
 import Team from "./pages/Team";
 import Patients from "./pages/Patients";
-import PatientExample from "./pages/PatientExample";
+import PatientExample from "./pages/patient/Patient.jsx";
 import { IconType } from "./ui-kit/components/iconMap.ts";
 
 type Props = {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text, LineChart, Badge, Image, Icon, DataCard, Grid } from "../ui-kit/index.ts"
+import { Text, LineChart, Badge, Image, Icon, DataCard, Grid, Alert, Button, Link } from "../ui-kit/index.ts"
 import { statusMap } from "./data";
 import { Emoji, EmojiQuite, EmojiSad } from "iconoir-react";
 
@@ -372,12 +372,12 @@ export default function Tracker() {
             <tbody>
                 
             <Summary visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
-        <COVID visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
-        <LifeStyle visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
-        <MentalHealth visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
-        <Vitals  visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
-        <Blood visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
-        <Hormones visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
+            <COVID visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
+            <LifeStyle visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
+            <MentalHealth visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
+            <Vitals  visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
+            <Blood visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
+            <Hormones visits={visits} view={view} setView={setView} rowStyles={rowStyles} cellStyles={cellStyles} />
         
             </tbody>
           </table>
@@ -878,4 +878,6 @@ function LifeStyle({
       </>
     );
   }
+
+
 

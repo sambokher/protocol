@@ -16,7 +16,7 @@ const dummyData = {
 
 type LineChartProps = {
     width?: 'auto' | 'full' | '1/2',
-    height?: '92px' | '120px' | '160px' | '200px' | '240px' | '360px',
+    height?: '92px' | '120px' | '160px' | '200px' | '240px' | '360px' | string,
     lineColor?: 'primary' | 'accent' | 'base-content' | 'base-0',
     lineWidth?: '1' | '2' | '3' | '4',
     lineType?: 'wavy' | 'linear',
@@ -93,7 +93,7 @@ export default function LineChartComponent({
                 <LineChart data={sampleData} margin={{ top: 20, right: sideMargins, bottom: 0, left: sideMargins }}>
                     {showGrid && <CartesianGrid strokeDasharray="1 3" />}
                     {showXAxis && <XAxis dataKey={data?.keys[0]} tick={{ fontSize: '12px'}}/>}
-                    {showYAxis && <YAxis width={20} tick={{ fontSize: '12px'}} domain={[bottomDomain, topDomain]} />}
+                    <YAxis width={20} tick={{ fontSize: '12px'}} domain={[bottomDomain, topDomain]} hide={!showYAxis} />
                     <Tooltip />
                     <Line 
                         type={lineType === 'wavy' ? 'monotone' : 'linear'} 
