@@ -156,7 +156,7 @@ function PatientInfo() {
         </div>
     )
   }
-  
+  // rebuild
   function Appointments() {
     return (
       <div className="w-full bg-base-50 rounded-lg p-4">
