@@ -21,11 +21,8 @@ export default function AddAIAgent({setView}) {
           width="auto"
           onClick={() => setView('list')}
           /></div>
-              <h1 className="text-3xl font-medium text-left flex gap-2 items-start appearance-none"
-              contentEditable="true"
-              onInput={(e) => setName(e.target.innerText)}
-              >
-                {name}
+              <h1 className="text-3xl font-medium text-left flex gap-2 items-start appearance-none">
+              Create AI Protocol
               </h1>
           </div>
           <Button 
@@ -38,17 +35,17 @@ export default function AddAIAgent({setView}) {
         
       
         <div className="flex flex-col flex-nowrap w-full gap-4 items-start justify-start">
-          <InputText placeholder="Briefly describe your protocol" width="1/2" label="Description" />
+          <InputText placeholder="Protocol Name" width="1/2" label="Name" />
           <TextArea 
-            label="Instructions" width="1/2" 
-            placeholder="Describe your protocol in detail"
+             width="1/2" 
+            label="Instructions" placeholder="Give AI instructions on how to perform the protocol"
             rows={12}
             />
           <FileUpload 
             label="Files" 
             width="1/2" 
             size="small" 
-            dropAreaText="Drag your file here or browse files" 
+            dropAreaText="Add any useful files" 
             corners="md"
             />
           <Select 

@@ -31,7 +31,6 @@ export default function FileUpload({
         state = 'placeholder',
         onChange = () => console.log('Files uploaded'),
         accept = '',
-        hasOutline,
         __juno = {},
         multiple = false
       }: FileUploadProps ) {
@@ -43,9 +42,8 @@ export default function FileUpload({
     const [isDragOver, setIsDragOver] = useState(false);
 
     const widthStyle = width != 'auto' ? `w-${width}` : 'w-auto'
-    const borderStyles = hasOutline ? `border border-current-20` : '';
     const sizeStyles = size == 'small' ? 'gap-0.5 text-xs' : size == 'large' ? 'gap-1.5 text-base' : 'gap-1 text-sm'
-    const classes = `flex flex-col items-stretch justify-start ${sizeStyles} ${widthStyle} ${borderStyles}`
+    const classes = `flex flex-col items-stretch justify-start ${sizeStyles} ${widthStyle}`
 
     const labelTextSize = size == 'small' ? `text-xs` :  size == 'large' ? `text-lg`: `text-sm`;
     const labelClasses = `text-base-content ${labelTextSize} font-medium`
@@ -53,10 +51,15 @@ export default function FileUpload({
     const iconSize = size == 'small' ? '20px' : size == 'large' ? '32px' : '24px'
     const IconComponent = icon ? <Icon icon={icon}  className='flex-shrink-0' size={iconSize}  /> : null;
 
-    const stateStyles = (state === 'focused' || isDragOver) ? 'bg-accent/10 border-accent' : 'bg-current-5 border-current-20';
+    const stateStyles = (state === 'focused' || isDragOver) ? 'bg-accent/10 border-accent' : 'bg-current-5 hover:bg-current-10 hover:border-dashed border-current-10 hover:border-current-15';
     const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
     const dropAreaSizeClasses = size === 'small' ? 'p-2 gap-0.5' : size === 'large' ? 'p-3 gap-1.5' : 'p-2 gap-1';
-    const dropAreaClasses = `w-full h-full relative border-dashed flex flex-col items-center justify-center ${cornerStyles} ${stateStyles} ${dropAreaSizeClasses}`
+
+    const borderWidth = size == 'small' ? 'border' : size == 'large' ? 'border-2' : 'border-1.5' 
+    const borderStyle = isDragOver ? `border-dashed` : ``
+    const dropAreaClasses = `w-full h-full relative 
+    ${borderWidth} ${borderStyle} transition-all duration-150
+    flex flex-col items-center justify-center ${cornerStyles} ${stateStyles} ${dropAreaSizeClasses}`
 
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -128,7 +131,7 @@ export default function FileUpload({
             {label && <label className={labelClasses}>{label}</label>}
             <div className={dropAreaClasses}
                 style={{
-                    borderWidth: size == 'small' ? '1px' : size == 'large' ? '2px' : '1.5px', 
+                    
                     minWidth: size == 'small' ? '120px' : size == 'large' ? '200px' : '160px',
                 }}
                 onDragOver={handleDragOver}

@@ -3,18 +3,21 @@ import { Button, TabGroup, Badge, Status, Alert, TableWidget } from "../ui-kit/i
 import { statusMap } from "./data";
 import { Emoji, EmojiQuite, EmojiSad } from "iconoir-react";
 import { useNavigate } from "react-router-dom";
+import Tracker from "./Tracker";
 
 export default function PatientExample() {
 
     const tabs = [
       // {"label":"Overview","value":"overview"},
-      {"label":"Visits","value":"insights"},
-      {"label":"Forms","value":"forms"},
-      // {"label":"Treaments","value":"treatments"},
-      {"label":"Protocols","value":"protocols"},
+      {label:"Visits",value:"visits"},
+      {label:"Info",value:"info"},
+      // {label:"Visits v1",value:"insights"},
+      {label:"Forms",value:"forms"},
+      {label:"Trends",value:"trends"},
+      // {label:"Protocols",value:"protocols"},
 
     ]
-    const [activeTab, setActiveTab] = useState('insights');
+    const [activeTab, setActiveTab] = useState(tabs[0].value)
 
     const navitate = useNavigate()
     return (
@@ -45,6 +48,7 @@ export default function PatientExample() {
             {activeTab === 'forms' && <FormsView />}      
             {activeTab === 'insights' && <ProgressView />}
             {activeTab === 'protocols' && <ProtocolsView />}
+            {activeTab === 'visits' && <Tracker />}
 
       </>
   )
