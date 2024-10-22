@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, LineChart, Badge, Status, Alert, TableWidget, Icon, Tag, Link, DataCard } from "../ui-kit/index.ts"
+import { Text, LineChart, Badge, Image, Icon, DataCard, Grid } from "../ui-kit/index.ts"
 import { statusMap } from "./data";
 import { Emoji, EmojiQuite, EmojiSad } from "iconoir-react";
 
@@ -35,20 +35,44 @@ export default function Tracker() {
             },
             mentalHealth: {
               status: 'concern',
+              stress: 'high',
               note: 'High stress levels and fatigue reported.',
             },
+            medications: {
+              rx: [
+                { name: 'Metformin', dose: '500 mg', frequency: 'daily' },
+                { name: 'Lisinopril', dose: '10 mg', frequency: 'daily' },
+                { name: 'Adderall', dose: '10 mg', frequency: 'daily' },
+              ],
+              supplements: [
+                { name: 'Vitamin D', dose: '1000 IU', frequency: 'daily' },
+                { name: 'Omega-3', dose: '1000 mg', frequency: 'daily' },
+              ],
+            },
             covid: {
-              symptoms: ['Fatigue'],
+              respiratory: ['Shortness of breath', 'Cough', 'Sore throat'],
+              neurological: ['Loss of smell', 'Headache'],
+              physical: ['Fatigue', 'Muscle pain', 'Body aches'],
+              gastrointestinal: [],
+              test: 'Positive',
+              testDate: '10 Jan 24',
             },
             lifeStyle: {
-              diet: 'high sugar',
-              exercise: 'sedentary',
-              sleepIssues: ['insomnia'],
-              caffeineUse: 'high',
-              alcohol: 'moderate',
-              sleepDuration: 'low',
+              diet: ['sweets', 'fast food'],
+              exercise: { level: 'low', types: ['walking'] },
+              sleep: { quality: 'low', issues: ['insomnia'] },
+              caffeine: 'daily',
+              alcohol: '3-4 drinks/week',
               stress: 'high',
-              smoking: 'none',
+              smoking: '–',
+              cannabis: '–',
+              substances: [],
+            },
+            maleHealth: {
+              urination: 'normal',
+              prostate: 'normal',
+              testosterone: 'normal',
+              colonScreen: { status: 'normal', date: '15 Jan 24' },
             },
           },
         },
@@ -60,7 +84,7 @@ export default function Tracker() {
           summary: {
             visitSummary: {
               reason: 'Follow-up after lifestyle modifications.',
-              diagnosis: 'Weight and blood pressure slightly decreased.',
+              diagnosis: 'Weight and blood pressure decreased; improvement noted.',
             },
             vitals: {
               weight: {
@@ -77,14 +101,14 @@ export default function Tracker() {
               },
               bloodPressure: {
                 value: '130/85 mmHg',
-                color: 'error',
-                change: '↓ 10/5',
+                color: 'warning',
+                change: '↓ 10/5 mmHg',
                 changeColor: 'success',
               },
               heartRate: {
                 value: '80 bpm',
                 color: 'error',
-                change: '↓ 10',
+                change: '↓ 10 bpm',
                 changeColor: 'success',
               },
             },
@@ -92,31 +116,31 @@ export default function Tracker() {
               fastingGlucose: {
                 value: '110 mg/dL',
                 color: 'warning',
-                change: '↓ 10',
+                change: '↓ 10 mg/dL',
                 changeColor: 'success',
               },
               cholesterol: {
                 value: '220 mg/dL',
                 color: 'warning',
-                change: '↓ 20',
+                change: '↓ 20 mg/dL',
                 changeColor: 'success',
               },
               ldl: {
                 value: '140 mg/dL',
                 color: 'warning',
-                change: '↓ 20',
+                change: '↓ 20 mg/dL',
                 changeColor: 'success',
               },
               hdl: {
                 value: '40 mg/dL',
                 color: 'warning',
-                change: '↑ 5',
+                change: '↑ 5 mg/dL',
                 changeColor: 'success',
               },
               triglycerides: {
                 value: '200 mg/dL',
                 color: 'warning',
-                change: '↓ 50',
+                change: '↓ 50 mg/dL',
                 changeColor: 'success',
               },
             },
@@ -130,32 +154,55 @@ export default function Tracker() {
               cortisol: {
                 value: '14 mcg/dL',
                 color: 'success',
-                change: '↓ 1',
+                change: '↓ 1 mcg/dL',
                 changeColor: 'base',
               },
               insulin: {
                 value: '18 µU/mL',
                 color: 'warning',
-                change: '↓ 2',
+                change: '↓ 2 µU/mL',
                 changeColor: 'success',
               },
             },
             mentalHealth: {
               status: 'stable',
-              note: 'Slight improvement; stress levels reduced.',
+              stress: 'moderate',
+              note: 'Stress levels reduced; mood improving.',
+            },
+            medications: {
+              rx: [
+                { name: 'Metformin', dose: '500 mg', frequency: 'daily' },
+                { name: 'Lisinopril', dose: '10 mg', frequency: 'daily' },
+              ],
+              supplements: [
+                { name: 'Vitamin D', dose: '1000 IU', frequency: 'daily' },
+                { name: 'Omega-3', dose: '1000 mg', frequency: 'daily' },
+              ],
             },
             covid: {
-              symptoms: [],
+              respiratory: ['Cough'],
+              neurological: [],
+              physical: ['Fatigue'],
+              gastrointestinal: [],
+              test: 'Negative',
+              testDate: '5 May 24',
             },
             lifeStyle: {
-              diet: 'improving',
-              exercise: 'moderate',
-              sleepIssues: [],
-              caffeineUse: 'moderate',
-              alcohol: 'low',
-              sleepDuration: 'normal',
+              diet: ['balanced'],
+              exercise: { level: 'moderate', types: ['walking', 'cycling'] },
+              sleep: { quality: 'improving', issues: [] },
+              caffeine: 'reduced',
+              alcohol: '1-2 drinks/week',
               stress: 'moderate',
               smoking: 'none',
+              cannabis: 'none',
+              substances: [],
+            },
+            maleHealth: {
+              urination: 'normal',
+              prostate: 'normal',
+              testosterone: 'normal',
+              colonScreen: { status: 'normal', date: '15 Jan 24' },
             },
           },
         },
@@ -166,32 +213,32 @@ export default function Tracker() {
           category: 'Weight Gain',
           summary: {
             visitSummary: {
-              reason: 'Routine check-up; continued lifestyle changes.',
-              diagnosis: 'Significant improvements observed.',
+              reason: 'Routine check-up; continued progress on lifestyle changes.',
+              diagnosis: 'Significant improvements; health parameters approaching normal ranges.',
             },
             vitals: {
               weight: {
-                value: '200 lbs',
+                value: '195 lbs',
                 color: 'warning',
-                change: '↓ 10 lbs',
+                change: '↓ 15 lbs',
                 changeColor: 'success',
               },
               BMI: {
-                value: '28.7',
+                value: '28.0',
                 color: 'warning',
-                change: '↓ 1.3',
+                change: '↓ 2.0',
                 changeColor: 'success',
               },
               bloodPressure: {
-                value: '125/80 mmHg',
-                color: 'error',
-                change: '↓ 5/5',
+                value: '120/80 mmHg',
+                color: 'success',
+                change: '↓ 10/5 mmHg',
                 changeColor: 'success',
               },
               heartRate: {
                 value: '70 bpm',
                 color: 'success',
-                change: '↓ 10',
+                change: '↓ 10 bpm',
                 changeColor: 'success',
               },
             },
@@ -199,31 +246,31 @@ export default function Tracker() {
               fastingGlucose: {
                 value: '95 mg/dL',
                 color: 'success',
-                change: '↓ 15',
+                change: '↓ 15 mg/dL',
                 changeColor: 'success',
               },
               cholesterol: {
                 value: '190 mg/dL',
                 color: 'success',
-                change: '↓ 30',
+                change: '↓ 30 mg/dL',
                 changeColor: 'success',
               },
               ldl: {
                 value: '120 mg/dL',
-                color: 'error',
-                change: '↓ 20',
+                color: 'warning',
+                change: '↓ 20 mg/dL',
                 changeColor: 'success',
               },
               hdl: {
                 value: '50 mg/dL',
                 color: 'success',
-                change: '↑ 10',
+                change: '↑ 10 mg/dL',
                 changeColor: 'success',
               },
               triglycerides: {
                 value: '150 mg/dL',
                 color: 'success',
-                change: '↓ 50',
+                change: '↓ 50 mg/dL',
                 changeColor: 'success',
               },
             },
@@ -237,32 +284,55 @@ export default function Tracker() {
               cortisol: {
                 value: '13 mcg/dL',
                 color: 'success',
-                change: '↓ 1',
+                change: '↓ 1 mcg/dL',
                 changeColor: 'base',
               },
               insulin: {
                 value: '15 µU/mL',
                 color: 'success',
-                change: '↓ 3',
+                change: '↓ 3 µU/mL',
                 changeColor: 'success',
               },
             },
             mentalHealth: {
               status: 'good',
+              stress: 'low',
               note: 'Feeling well; stress levels low.',
             },
+            medications: {
+              rx: [
+                { name: 'Metformin', dose: '500 mg', frequency: 'daily' },
+                { name: 'Lisinopril', dose: '10 mg', frequency: 'daily' },
+              ],
+              supplements: [
+                { name: 'Vitamin D', dose: '1000 IU', frequency: 'daily' },
+                { name: 'Omega-3', dose: '1000 mg', frequency: 'daily' },
+              ],
+            },
             covid: {
-              symptoms: [],
+              respiratory: [],
+              neurological: [],
+              physical: [],
+              gastrointestinal: [],
+              test: 'Negative',
+              testDate: '5 Oct 24',
             },
             lifeStyle: {
-              diet: 'balanced',
-              exercise: 'active',
-              sleepIssues: [],
-              caffeineUse: 'low',
-              alcohol: 'minimal',
-              sleepDuration: 'normal',
+              diet: ['vegetarian', 'low sugar'],
+              exercise: { level: 'active', types: ['running', 'cycling'] },
+              sleep: { quality: 'good', issues: [] },
+              caffeine: 'minimal',
+              alcohol: 'occasional',
               stress: 'low',
               smoking: 'none',
+              cannabis: 'none',
+              substances: [],
+            },
+            maleHealth: {
+              urination: 'normal',
+              prostate: 'normal',
+              testosterone: 'normal',
+              colonScreen: { status: 'normal', date: '15 Jan 24' },
             },
           },
         },
@@ -283,9 +353,7 @@ export default function Tracker() {
 
     return (
         <>
-            <PatientInfo />
-            <Trends />
-          <table className="w-full text-base-content text-sm table-fixed select-none text-xs mt-10">
+          <table className="w-full text-base-content text-sm table-fixed select-none text-xs">
             <thead>
               <tr className="border-b" >
                 <th style={{width: '19%'}} className={cellStyles}>Visits</th>
@@ -582,15 +650,16 @@ function COVID({
     visits,
     view,
     setView,
-    rowStyles, 
-    cellStyles
-}) {
+    rowStyles,
+    cellStyles,
+  }) {
     return (
-        <>
+      <>
+        {/* COVID-19 Header */}
         <tr className={rowStyles}>
           <td colSpan={visits.length + 1} className={cellStyles}>
             <div
-              className="flex flex-row justify-start items-center gap-2 text-md font-semibold"
+              className="flex flex-row justify-start items-center gap-2 text-md font-semibold cursor-pointer"
               onClick={() => setView({ ...view, covid: !view.covid })}
             >
               COVID-19
@@ -604,52 +673,100 @@ function COVID({
             </div>
           </td>
         </tr>
+  
+        {/* COVID-19 Details */}
         {view.covid &&
           Object.keys(visits[0].summary.covid).map((param) => (
             <tr key={param}>
+              {/* Parameter Name */}
               <td className={`capitalize ${cellStyles}`}>
                 {param.replace(/([A-Z])/g, ' $1')}
               </td>
+  
+              {/* Parameter Values for Each Visit */}
               {visits
                 .slice()
                 .sort((a, b) => b.id - a.id)
                 .map((visit) => {
                   const answer = visit.summary.covid[param];
+  
+                  // Handle Arrays (Symptoms)
                   if (Array.isArray(answer)) {
                     return (
-                      <td key={visit.id} style={{ textAlign: 'left' }} className={cellStyles}>
-                        <ul className="flex flex-wrap gap-1">
-                          {answer.map((symptom) => (
-                            <Badge key={symptom} text={symptom} size="small" />
-                          ))}
-                        </ul>
+                      <td
+                        key={visit.id}
+                        style={{ textAlign: 'left' }}
+                        className={cellStyles}
+                      >
+                        {answer.length > 0 ? (
+                          <ul className="flex flex-wrap gap-1">
+                            {answer.map((symptom) => (
+                              <Badge
+                                key={symptom}
+                                text={symptom}
+                                size="small"
+                                color="base-700"
+                                style="light"
+                              />
+                            ))}
+                          </ul>
+                        ) : (
+                          <span>–</span>
+                        )}
                       </td>
                     );
                   }
-                  return (
-                    <td key={visit.id} style={{ textAlign: 'left' }} className={cellStyles}>
-                      {answer}
-                    </td>
-                  );
+  
+                  // Handle Strings (Test Results, Dates)
+                  else if (typeof answer === 'string') {
+                    return (
+                      <td
+                        key={visit.id}
+                        style={{ textAlign: 'left' }}
+                        className={`${cellStyles} ${answer === 'Positive' && 'text-warning'}`}
+                      >
+                        {answer || '–'}
+                      </td>
+                    );
+                  }
+  
+                  // Handle Other Data Types or Null Values
+                  else {
+                    return (
+                      <td
+                        key={visit.id}
+                        style={{ textAlign: 'left' }}
+                        className={cellStyles}
+                      >
+                        {answer !== undefined && answer !== null ? (
+                          <span>{answer}</span>
+                        ) : (
+                          <span>–</span>
+                        )}
+                      </td>
+                    );
+                  }
                 })}
             </tr>
-          ))}</>
-    )
-}
+          ))}
+      </>
+    );
+  }
 
 function LifeStyle({
     visits,
     view,
     setView,
-    rowStyles, 
-    cellStyles
-}) {
+    rowStyles,
+    cellStyles,
+  }) {
     return (
-        <>
+      <>
+        {/* Lifestyle Header */}
         <tr className={rowStyles}>
           <td colSpan={visits.length + 1} className={cellStyles}>
             <div
-              className="flex flex-row justify-start items-center gap-2 text-md font-semibold"
+              className="flex flex-row justify-start items-center gap-2 text-md font-semibold cursor-pointer"
               onClick={() => setView({ ...view, lifeStyle: !view.lifeStyle })}
             >
               Lifestyle
@@ -663,98 +780,102 @@ function LifeStyle({
             </div>
           </td>
         </tr>
+  
+        {/* Lifestyle Details */}
         {view.lifeStyle &&
           Object.keys(visits[0].summary.lifeStyle).map((param) => (
             <tr key={param}>
-              <td className={`capitalize ${cellStyles}`}>
+              {/* Parameter Name */}
+              <td className={`capitalize ${cellStyles} align-top`}>
                 {param.replace(/([A-Z])/g, ' $1')}
               </td>
+  
+              {/* Parameter Values for Each Visit */}
               {visits
                 .slice()
                 .sort((a, b) => b.id - a.id)
                 .map((visit) => {
                   const answer = visit.summary.lifeStyle[param];
+  
+                  // Handle Arrays
                   if (Array.isArray(answer)) {
                     return (
-                      <td key={visit.id} style={{ textAlign: 'left' }} className={cellStyles}>
-                        <ul className="flex flex-wrap gap-1">
-                          {answer.map((symptom) => (
-                            <Badge key={symptom} text={symptom} size="small" />
-                          ))}
-                        </ul>
+                      <td
+                        key={visit.id}
+                        style={{ textAlign: 'left' }}
+                        className={cellStyles}
+                      >
+                        {answer.length > 0 ? (
+                          <ul className="flex flex-wrap gap-1">
+                            {answer.map((item) => (
+                              <Badge key={item} text={item} size="small" style="light" color="base-700" />
+                            ))}
+                          </ul>
+                        ) : (
+                          <span>–</span>
+                        )}
                       </td>
                     );
                   }
-                  return (
-                    <td key={visit.id} style={{ textAlign: 'left' }} className={cellStyles}>
+  
+                  // Handle Objects
+                  else if (typeof answer === 'object' && answer !== null) {
+                    return (
+                      <td
+                        key={visit.id}
+                        style={{ textAlign: 'left', verticalAlign: 'top' }}
+                        className={cellStyles}
+                      >
+                        {Object.keys(answer).map((subKey) => (
+                          <div key={subKey} className="flex items-start mb-1">
+                            {Array.isArray(answer[subKey]) ? (
+                              <ul className="flex flex-wrap gap-1">
+                                {answer[subKey].map((item) => (
+                                    <>{item}; </>
+                                ))}
+                              </ul>
+                            ) : (
+                              <span>{answer[subKey]}</span>
+                            )}
+                          </div>
+                        ))}
+                      </td>
+                    );
+                  }
+  
+                  // Handle Strings and Other Types
+                  else {
+                    return (
+                      <td
+                        key={visit.id}
+                        style={{ textAlign: 'left' }}
+                        className={cellStyles}
+                      >
                         <div className="flex flex-col gap-2 items-start">
-                      <Badge text={answer} size="small" 
-                      color={answer === 'low' ? 'success' : answer === 'moderate' ? 'warning' : 'error'}
-                      style="light"
-                      /></div>
-                    </td>
-                  );
+                          <Badge
+                            text={answer}
+                            size="small"
+                            color={
+                              ['low', 'none', 'minimal', 'reduced'].includes(
+                                answer.toLowerCase()
+                              )
+                                ? 'success'
+                                : ['moderate', 'occasional'].includes(
+                                    answer.toLowerCase()
+                                  )
+                                ? 'warning'
+                                : 'error'
+                            }
+                            style="light"
+                          />
+                        </div>
+                      </td>
+                    );
+                  }
                 })}
             </tr>
-          ))}</>
-    )
-}
+          ))}
+      </>
+    );
+  }
 
-function PatientInfo() {
-    return (
-        <div className="bg-base-50 text-xs font-normal flex justify-start items-start rounded-lg p-4">
-            static patient details: photo, name, age, history, etc.
-        </div>
-    )
-}
-
-function Trends() {
-
-    const weightData = {
-        keys: ["date", "Weight"],
-        values: [
-            ["Jan '24", 220],
-            ["May '24", 210],
-            ["Oct '24", 200],
-        ]
-    }
-
-    const bmiData = {
-        keys: ["date", "BMI"],
-        values: [
-            ["Jan '24", 31.6],
-            ["May '24", 30],
-            ["Oct '24", 28.7],
-        ]
-    }
-
-    return (
-        <div className="text-xs font-normal flex justify-start items-start w-full mt-8">
-            <div className="grid w-full gap-3 text-base-content" style={{ alignItems: 'start', gridTemplateColumns: 'repeat(3, minmax(0px, 1fr))' }}>
-            <div className="flex flex-col flex-nowrap w-full text-base-content bg-base-0 gap-4 rounded-base items-start justify-start h-full">
-                    <DataCard title="Blood Pressure" value="130/85 mmHg" />
-                    <DataCard title="Cholesterol" value="190 mg/dL" />
-                    <DataCard title="Glucose" value="100 mg/dL" />
-                </div>
-                <div className="flex flex-col flex-nowrap w-full text-base-content bg-base-0 gap-2 rounded-base items-start justify-start">
-                    <span className="inline-flex whitespace-pre-wrap  mb-3 font-bold text-center">
-                    BMI
-                    </span>
-                    <LineChart height="160px" data={bmiData} lineColor="primary" lineType="linear" showLabels  
-                    showYAxis bottomDomain={25} topDomain={35} />
-                </div>
-                <div className="flex flex-col flex-nowrap w-full text-base-content bg-base-0 gap-2 rounded-base items-start justify-start">
-                    <span className="inline-flex whitespace-pre-wrap mb-3 font-bold text-center">
-                    Weight (lbs)
-                    </span>
-                    <LineChart height="160px" data={weightData}
-                    showLabels  
-                     lineColor="primary" lineType="linear"  
-                     showYAxis bottomDomain={150} topDomain={300}
-                     />
-                </div>
-                
-                </div>
-        </div>
-    )
-}
