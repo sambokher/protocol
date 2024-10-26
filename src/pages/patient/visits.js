@@ -1,7 +1,7 @@
 export const visits = [
     {
       id: 1,
-      date: '12 Jan 24',
+      date: '12 Jan, 24',
       status: 'Escalation',
       category: 'Weight Gain',
       summary: {
@@ -71,7 +71,7 @@ export const visits = [
     },
     {
       id: 2,
-      date: '10 May 24',
+      date: '10 May, 24',
       status: 'Observation',
       category: 'Weight Gain',
       summary: {
@@ -200,7 +200,7 @@ export const visits = [
     },
     {
       id: 3,
-      date: '8 Oct 24',
+      date: '8 Oct, 24',
       status: 'Routine',
       category: 'Weight Gain',
       summary: {

@@ -1,5 +1,5 @@
 
-import { Button, TabGroup, Badge, Status, Alert, TableWidget, Heading, Image, DataCard, LineChart } from "../../ui-kit/index.ts"
+import { Button, TabGroup, Badge, Status, Alert, TableWidget, Heading, Image, DataCard, LineChart, Checkbox } from "../../ui-kit/index.ts"
 import { statusMap } from "../data.jsx";
 import { Calendar, Emoji, EmojiQuite, EmojiSad, MapPin, Pin, Suitcase } from "iconoir-react";
 
@@ -7,12 +7,13 @@ export default function Overview() {
  return (
     <>
     <PatientInfo />
-    <Trends />
+    <Tasks />
+    <Appointments />
     </>
  )
 
 }
-
+//<Trends />
 function PatientInfo() {
     const patientData = {
         general: {
@@ -23,13 +24,10 @@ function PatientInfo() {
             occupation: 'Software Engineer',
             age: 34,
         }, 
-        allergies: {
-            medications: ['Penicillin'],
-            food: ['Peanuts'],
-            environmental: ['Pollen'],
-        },
+        medications: ['Lisinopril 10mg', 'Metformin 500mg', 'Atorvastatin 20mg'],
+        allergies: ['Penicillin', 'Peanuts', 'Pollen'],
         history: {
-            chronic: ['Astma', 'Hypertension', 'Obesity'],
+            chronic: ['Hypertension', 'Obesity'],
             surgery: ['Appendectomy'],
             family: ['Diabetes', 'Heart Disease', 'Alcoholism'],
         }
@@ -38,7 +36,9 @@ function PatientInfo() {
     const titleProps ={
       textSize: "xs",
       fontWeight: "normal", 
-      color: 'base-500'
+      color: 'base-500', 
+      marginTop: '12px',
+      fontWeight: 'medium'
     }
     
     const mugshot = "https://storage.googleapis.com/juno-v1.appspot.com/grfnhiohvrpa1.jpg?GoogleAccessId=firebase-adminsdk-ihqnb%40juno-v1.iam.gserviceaccount.com&Expires=4102462800&Signature=crCwkrMQQkE3OV1MelVGhjwTKKJjfaKXzQlmUYEuZ9dgT%2Br%2BuxRt7%2F2fjlhdqOYBTs3Nd9ZPoyDdDYq1JsAux7y4Okgd%2F7bA7GkWCifOqY1WwbOHVZHf0ZKiOZ23h9bYh2rnosov86rzzrJNtvX4lsAXWwOfSMxZNOf2dgY8p5QszGsKT4J%2BmS%2BaRq7f0veTjI86pqA6JKViHx15WyFBOroV1TLv75U5KC367w%2BPaq0uZJWbWyEQmjHcF4qwzWQphFYOyjy9E87gruUKa9oXdXiq09TM3WYPHSHVQcd9bdM%2F06sbjdeMZGEMsvvoQoiL8VJRiRWiNR8Mw0o673n9kA%3D%3D" 
@@ -70,28 +70,40 @@ function PatientInfo() {
                             </span>
                             </div>
                         </div>
-                        <div  className={blockStyles}>
-                            <Heading text="Conditions"  {...titleProps}/>
-                            <span>
-                              {patientData.history.chronic.join(', ')}
-                            </span>
-                            <span>
-                              {patientData.history.surgery.join(', ')}
-                            </span>
-                            <Heading text="History" {...titleProps}/>
-                            <span>
-                              {patientData.history.family.join(', ')}
-                            </span>
+                        <div  className={`${blockStyles}`}>
+                            <Heading text="Conditions" {...titleProps} marginTop={null} />
+                            <div className="flex flex-wrap gap-2">
+                              {patientData.history.chronic.map((condition, index) => (
+                                <Badge key={index} text={condition} color="base-200" size="small" style="outline" />
+                              ))}
+                            </div>
+                            <Heading text="Past Surgeries" {...titleProps}/>
+                            <div className="flex flex-wrap gap-2">
+                              {patientData.history.surgery.map((surgery, index) => (
+                                <Badge key={index} text={surgery} color="base-200" size="small" style="outline" />
+                              ))}
+                            </div>
+                            <Heading text="Family History" {...titleProps}/>
+                            <div className="flex flex-wrap gap-2">
+                              {patientData.history.family.map((condition, index) => (
+                                <Badge key={index} text={condition} color="base-200" size="small" style="outline" />
+                              ))}
+                            </div>
                         </div>
                         <div  className={blockStyles}>
-                            <Heading text="Medications" {...titleProps}/>
-                            <span>
-                              {patientData.allergies.medications.join(', ')}
-                            </span>
+                            <Heading text="Medications" {...titleProps}  marginTop={null} />
+                            <div className="flex flex-wrap gap-2">
+                              {patientData.medications.map((medication, index) => (
+                                <Badge key={index} text={medication} color="info" size="small"  style="light" isPill />
+                              ))}
+                            </div>
                             <Heading text="Allergies" {...titleProps}/>
-                            <span>
-                              {patientData.allergies.food.join(', ')}
-                            </span>
+                            <div className="flex flex-wrap gap-2">
+                              {patientData.allergies.map((allergy, index) => (
+                                <Badge key={index} text={allergy} color="warning" size="small" style="outline" />
+                              ))}
+                            </div>
+                            
                             
                         </div>
                 </div>
@@ -99,74 +111,59 @@ function PatientInfo() {
     )
   }
   
-  function Trends() {
-  
-    const weightData = {
-        keys: ["date", "Weight"],
-        values: [
-            ["Jan '24", 220],
-            ["May '24", 210],
-            ["Oct '24", 200],
-        ]
-    }
-  
-    const bmiData = {
-        keys: ["date", "BMI"],
-        values: [
-            ["Jan '24", 31.6],
-            ["May '24", 30],
-            ["Oct '24", 28.7],
-        ]
-    }
-  
+
+  function Tasks() {
+    const tasks = [
+      { label: 'Intake Form', checked: true },
+      { label: 'Insurance Card', checked: false },
+      { label: 'Consent Form Needs Update', checked: false },
+      { label: 'Blood Panel due in 2 months', checked: false },
+    ]
     return (
-        <div className="text-xs font-normal flex justify-start items-start w-full mt-8">
-            <div className="grid w-full gap-5 text-base-content" style={{ alignItems: 'start', gridTemplateColumns: 'repeat(3, minmax(0px, 1fr))' }}>
-            
-                <div className="flex flex-col flex-nowrap w-full text-base-content bg-base-0 gap-2 rounded-base items-start justify-start">
-                    <span className="inline-flex whitespace-pre-wrap  mb-3 font-bold text-center">
-                    BMI
-                    </span>
-                    <LineChart height="160px" data={bmiData} lineColor="primary" lineType="linear" showLabels  
-                    showYAxis bottomDomain={25} topDomain={35} />
-                </div>
-                <div className="flex flex-col flex-nowrap w-full text-base-content bg-base-0 gap-2 rounded-base items-start justify-start">
-                    <span className="inline-flex whitespace-pre-wrap mb-3 font-bold text-center">
-                    Weight (lbs)
-                    </span>
-                    <LineChart height="160px" data={weightData}
-                    showLabels  
-                     lineColor="primary" lineType="linear"  
-                     showYAxis bottomDomain={150} topDomain={300}
-                     />
-                </div>
-                
-                <div className="flex flex-col flex-nowrap w-full text-base-content bg-base-0 gap-2 rounded-base items-start justify-start">
-                    <span className="inline-flex whitespace-pre-wrap mb-3 font-bold text-center">
-                    Weight (lbs)
-                    </span>
-                    <LineChart height="160px" data={weightData}
-                    showLabels  
-                     lineColor="primary" lineType="linear"  
-                     showYAxis bottomDomain={150} topDomain={300}
-                     />
-                </div>
-                
-                </div>
-        </div>
-    )
-  }
-  // rebuild
-  function Appointments() {
-    return (
-      <div className="w-full bg-base-50 rounded-lg p-4">
-        Appointments table
+      <div className="w-full gap-2 flex flex-col">
+        Tasks
+        {tasks.map((task, index) => (
+            <Checkbox checked={task.checked} label={task.label} style="button" key={index} />
+        ))}
       </div>
     )
   }
 
-  /*<div className="flex flex-col flex-nowrap w-full text-base-content bg-base-0 gap-4 rounded-base items-start justify-start h-full">
-                    <DataCard title="Blood Pressure" value="130/85 mmHg" />
-                    <DataCard title="Cholesterol" value="190 mg/dL" />
-                    <DataCard title="Glucose" value="100 mg/dL" />
-                </div>*/
+  
+
+  function Appointments() {
+    const columns = [
+      {"type":"text","width":"15%","header":"Date","accessor":"date","direction":"flex-row","alignItems":"center","hideOnMobile":false,"justifyContent":"start"},
+      {"type":"text","width":"25%","header":"Doctor","accessor":"doctor","direction":"flex-row","alignItems":"center","hideOnMobile":false,"justifyContent":"start"},
+      {"type":"text","width":"35%","header":"Reason","accessor":"reason","direction":"flex-row","alignItems":"center","hideOnMobile":false,"justifyContent":"start"},
+      {"type":"arrayOfObjects","width":"25%","header":"Status","accessor":"status","direction":"flex-col","alignItems":"center","hideOnMobile":true,"justifyContent":"start"}]
+    const data = [
+      {id:1,
+        date:"2023-10-01",
+        reason:"Routine Check-up",
+        doctor:"Dr. Ramos",
+        status:[{"component":"Status","props":{"text":"Routine","color":"success","size":"small","showIndicator":true}}]},
+      {id:2,
+        date:"2023-10-02",
+        reason:"Follow-up",
+        doctor:"Dr. Ramos",
+        status:[{"component":"Status","props":{"text":"Observation","color":"info","size":"small","showIndicator":true}}]},
+      {id:3,
+        date:"2023-10-03",
+        reason:"Consultation",
+        doctor:"Dr. Wilson",
+        status:[{"component":"Status","props":{"text":"Escalation","color":"warning","size":"small","showIndicator":true}}]
+      },
+    ]
+    return (
+      <div className="w-full gap-2 flex flex-col">
+        Past Appointments
+        <TableWidget corners="md" 
+        rowData={data} 
+        textSize="sm" columnData={columns} 
+        cellPaddingX="8px" cellPaddingY="6px"  />
+      </div>
+    )
+  }
+
+  

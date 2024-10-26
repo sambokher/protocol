@@ -28,7 +28,7 @@ type Props = {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<AppWrapper />}>
-      <Route path="/" element={<Navigate to="/appointments" />} />
+      <Route path="/" element={<Navigate to="/patient-example" />} />
       <Route path="/appointments" element={<Appointments />} />
       <Route path="/team" element={<Team />} />
       <Route path="/protocols" element={<Protocols />} />

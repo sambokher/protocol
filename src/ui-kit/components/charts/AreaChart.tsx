@@ -30,6 +30,8 @@ type AreaChartProps = {
     corners?: 'none' | 'sm' | 'md' | 'lg',
     emptyState?: boolean,
     emptyMessage?: string,
+    bottomDomain?: number,
+    topDomain?: number,
     data?: {
         keys: string[],
         values: any[][]
@@ -38,46 +40,42 @@ type AreaChartProps = {
 }
 
 export default function AreaChartComponent({
-        backgroundColor = null, 
+        backgroundColor,
         width = 'full',
         height = '120px',
         lineColor = 'primary',
         lineWidth = '2',
         lineType = 'wavy',
         showDots = true,
-        showLabels = true,
-        showYAxis = true,
-        showXAxis = true,
-        showGrid = true,
+        showLabels,
+        showYAxis,
+        showXAxis= true,
+        showGrid,
         data = dummyData,
-        title = 'Sales',
+        bottomDomain,
+        topDomain,
         emptyState = false,
         emptyMessage = 'Data may take up to 24 hrs to show',
         __juno = {}
       }: AreaChartProps) {
 
     const widthStyles = `w-${width}`;
-    // const paddingStyles = padding === 'none' ? 'p-0' : `p-${padding}`;
-    // const cornerStyles = corners === 'none' ? '' : `rounded-${corners}`;
 
     const bgStyles = backgroundColor && backgroundColor != 'none' ? `bg-${backgroundColor}` : ''
     const fontColorStyles = backgroundColor && backgroundColor != 'none' ? `text-base-content` : 'text-inherit'
 
     const classes = `flex flex-col items-stretch relative ${widthStyles} ${bgStyles} ${fontColorStyles}`
-
-    // ${paddingStyles} ${cornerStyles}
     
     const emptyStyles = `flex flex-col justify-center items-center px-sm text-sm font-medium gap-2 rounded-md`
     
-    function transformData(keys, values) {
-        return values?.map(values => {
-            return values.reduce((obj, val, index) => {
+    function transformData(keys: string[], values: any[][]) {
+        return values?.map((values: any[]) => {
+            return values?.reduce((obj: any, val: any, index: number) => {
                 obj[keys[index]] = val;
                 return obj;
             }, {});
         });
     }
-    
     const sampleData = data ? transformData(data?.keys, data?.values) : []    
     const sideMargins = (!showYAxis && !showLabels && !showDots && !showXAxis) ? 0 : 20
 
@@ -92,10 +90,10 @@ export default function AreaChartComponent({
                     width: '100%', 
                     height: height,  }}>
                 <ResponsiveContainer width={'100%'} height="100%" >
-                    <AreaChart data={sampleData} margin={{ top: 20, right: sideMargins, bottom: 0, left: sideMargins }}>
+                    <AreaChart data={sampleData} margin={{ top: 0, right: sideMargins, bottom: 0, left: sideMargins }}>
                     {showGrid && <CartesianGrid strokeDasharray="1 3" />}
                     {showXAxis && <XAxis dataKey={data.keys[0]} tick={{ fontSize: '12px'}}/>}
-                    {showYAxis && <YAxis width={20} tick={{ fontSize: '12px'}}/>}
+                    <YAxis width={20} tick={{ fontSize: '12px'}} domain={[bottomDomain || 'auto', topDomain || 'auto']} hide={!showYAxis} />
                     <Tooltip />
                     <Area 
                         type={lineType === 'wavy' ? 'monotone' : 'linear'}

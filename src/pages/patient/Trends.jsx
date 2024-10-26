@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text, LineChart, Badge, Image, Icon, DataCard, Grid, Alert, Button, Link, Select, TabsVertical, SidebarLink } from "../../ui-kit/index.ts"
+import { Text, LineChart, Badge, Image, Icon, DataCard, Grid, Alert, Button, Link, Select, TabsVertical, SidebarLink, Divider } from "../../ui-kit/index.ts"
 import { statusMap } from "../data";
 import { Activity, Brain, CoolingSquare, Emoji, EmojiQuite, EmojiSad, Heart, List, Running, TestTube, Vials, WeightAlt } from "iconoir-react";
 import { visits } from "./visits";
@@ -28,6 +28,7 @@ export default function Trends() {
     const flippedVisits = visits.slice().reverse();
     return (
         <>
+          <Timeline visits={flippedVisits} />
           <table className="w-full text-base-content text-sm table-fixed select-none text-xs">
             <TableHeader visits={visits} rowStyles={rowStyles} cellStyles={cellStyles} />
             <tbody>  
@@ -54,8 +55,8 @@ function TableHeader({ visits, rowStyles, cellStyles }) {
     return (
         <thead>
               <tr className="" >
-                <th style={{width: '19%'}} className={`${cellStyles} pl-0`}>Visits</th>
-                {visits
+                <th style={{width: '19%'}} className={`${cellStyles} pl-0`}></th>
+                {/*visits
                   .slice()
                   .sort((a, b) => a.id - b.id)
                   .map((visit) => (
@@ -64,7 +65,7 @@ function TableHeader({ visits, rowStyles, cellStyles }) {
                       {visit.date}
                       </div>
                     </th>
-                  ))}
+                  ))*/}
               </tr>
             </thead>
     )
@@ -74,7 +75,7 @@ function TableHeader({ visits, rowStyles, cellStyles }) {
 function Summary({ visits, view, setView, rowStyles, cellStyles }) {
     return (
         <>
-        <tr className={rowStyles}>
+        <tr className={`${rowStyles} !border-t-0 !mt-0`}>
         <td className={`${cellStyles} pl-0`}>
             <div className="flex flex-row justify-start items-center gap-2 font-medium opacity-80"
               // onClick={() => setView({ ...view, summary: !view.summary })}
@@ -573,4 +574,49 @@ function LifeStyle({
 
 
 
-  
+  function Timeline({visits}) {
+
+    const circle = `absolute ml-1.5 w-5 h-5 rounded-full flex items-center justify-center bg-primary flex-shrink-0 flex-grow-0`;
+    const date = `-ml-2 inline-flex whitespace-pre-wrap text-left ring-[0.5px] ring-current-20 px-2 py-1 rounded-md font-medium`
+    return (
+      <div className="flex flex-row w-full gap-2">
+      <div className="flex-shrink-0 text-sm flex-grow pb-1 opacity-60 h-full flex items-end justify-start" style={{width: '19%'}}>
+        Visits
+      </div>
+      <div className="flex flex-col flex-nowrap w-full gap-2 items-start justify-start">
+        
+  <div className="flex flex-row gap-2 flex-nowrap w-full items-center justify-between">
+    <div className="flex flex-col flex-nowrap w-full items-start justify-start">
+      <span className={date}>
+      {visits[2].date}
+      </span>
+    </div>
+    <div className="flex flex-col flex-nowrap w-full items-start justify-start">
+      <span className={date}>
+      {visits[1].date}
+      </span>
+    </div>
+    <div className="flex flex-col flex-nowrap w-full items-start justify-start">
+      <span className={date}>
+      {visits[0].date}
+      </span>
+    </div>
+  </div>
+  <div className="flex flex-row flex-nowrap w-full items-center justify-start">
+    <div className="flex flex-row flex-nowrap w-full items-center justify-start relative">
+      <div className={`${circle} !ml-0`}/>
+      <Divider color="primary" length="full" margins="6px" direction="horizontal" thickness="2px" />
+    </div>
+    <div className="flex flex-row flex-nowrap w-full items-center justify-start relative">
+      <div className={circle}/>
+      <Divider color="primary" length="full" margins="6px" direction="horizontal" thickness="2px" />
+    </div>
+    <div className="flex flex-row flex-nowrap w-full items-center justify-start relative">
+    <div className={`${circle} !bg-success-content`}/>
+      <div className="absolute z-10 bg-gradient-to-r from-success-content to-transparent w-full h-0.5 left-0 top-1/2 -translate-y-1/2"/>
+    </div>
+  </div>
+</div>
+</div>
+    )
+  }

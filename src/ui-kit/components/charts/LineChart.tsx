@@ -28,8 +28,8 @@ type LineChartProps = {
     backgroundColor?: 'base-0' | 'base-100' | 'base-200' | string, 
     emptyState?: boolean,
     emptyMessage?: string,
-    bottomDomain?: number | 'auto',
-    topDomain?: number | 'auto',
+    bottomDomain?: number,
+    topDomain?: number,
     data?: {
         keys: string[],
         values: any[][]
@@ -52,8 +52,8 @@ export default function LineChartComponent({
         data = dummyData,  
         emptyState,
         emptyMessage = 'empty message',
-        bottomDomain = 'auto',
-        topDomain = 'auto',
+        bottomDomain,
+        topDomain,
         __juno = {}
       }: LineChartProps) {
 
@@ -93,7 +93,7 @@ export default function LineChartComponent({
                 <LineChart data={sampleData} margin={{ top: 20, right: sideMargins, bottom: 0, left: sideMargins }}>
                     {showGrid && <CartesianGrid strokeDasharray="1 3" />}
                     {showXAxis && <XAxis dataKey={data?.keys[0]} tick={{ fontSize: '12px'}}/>}
-                    <YAxis width={20} tick={{ fontSize: '12px'}} domain={[bottomDomain, topDomain]} hide={!showYAxis} />
+                    <YAxis width={20} tick={{ fontSize: '12px'}} domain={[bottomDomain || 'auto', topDomain || 'auto']} hide={!showYAxis} />
                     <Tooltip />
                     <Line 
                         type={lineType === 'wavy' ? 'monotone' : 'linear'} 
