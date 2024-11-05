@@ -114,8 +114,7 @@ function PatientInfo() {
 
   function Tasks() {
     const tasks = [
-      { label: 'Intake Form', checked: true },
-      { label: 'Insurance Card', checked: false },
+      { label: 'Insurance Card Needs Update', checked: false },
       { label: 'Consent Form Needs Update', checked: false },
       { label: 'Blood Panel due in 2 months', checked: false },
     ]

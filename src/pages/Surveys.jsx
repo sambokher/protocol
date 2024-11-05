@@ -7,16 +7,16 @@ export default function Surveys() {
     const [forms, setForms] = useState({
       'patient-intake': [
         { name: 'Patient Information', status: 'Completed' },
+        { name: 'HIPPA Consent Form', status: 'Completed' },
+        { name: 'Treatment Consent Form', status: 'Pending' },
         { name: 'Medical History', status: 'Pending' },
-        { name: 'Medications', status: 'In Progress' },
+        
       ],
       assessments: [
-        { name: 'Physical Assessment', status: 'Completed' },
-        { name: 'Mental Health Assessment', status: 'Pending' },
-      ],
-      administrative: [
-        { name: 'Insurance Information', status: 'Completed' },
-        { name: 'Consent Form', status: 'Pending' },
+        { name: 'Physical Health', status: 'Completed' },
+        { name: 'Mental Health', status: 'Pending' },
+        { name: 'COVID-19', status: 'Pending' },
+        
       ],
       drafts: [
         { name: 'Draft Patient Info', status: 'Draft' },
@@ -41,9 +41,8 @@ export default function Surveys() {
         <div className="flex flex-row flex-nowrap w-full self-auto gap-3 items-center justify-start h-auto">
             <TabGroup 
               tabs={[
-                { label: "Patient Intake", value: "patient-intake", icon: "user-check" },
-                { label: "Assessments", value: "assessments", icon: "clipboard-check" },
-                { label: "Administrative", value: "administrative", icon: "briefcase" },
+                { label: "Patient Data", value: "patient-intake", icon: "user-check" },
+                { label: "Survey Templates", value: "assessments", icon: "clipboard-check" },
                 { label: "Drafts", value: "drafts" },
               ]}
               selectColor="primary"

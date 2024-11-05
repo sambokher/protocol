@@ -23,13 +23,12 @@ export default function Automations() {
 function ListView({ setView }) {
   // Set up automations data
   const automations = [
-    { id: 1, name: 'Hyperglycemia Detection', status: 'Active', type: 'Manual' },
-    { id: 2, name: 'Hypoglycemia Alert System', status: 'Active', type: 'AI' },
-    { id: 3, name: 'Complex Diabetes Risk Monitoring', status: 'Active', type: 'Manual' },
-    { id: 5, name: 'Hypertension & Diabetes Control', status: 'Active', type: 'AI' },
-    { id: 6, name: 'Ketone Risk Alert', status: 'Draft', type: 'Manual' },
-    { id: 7, name: 'Sudden Weight Fluctuation Monitoring', status: 'Draft', type: 'Manual' },
-    { id: 8, name: 'Fatigue & Vision Symptom Checker', status: 'Draft', type: 'AI' },
+    { id: 1, name: 'Long COVID-19', status: 'Active', type: 'Manual' },
+    { id: 2, name: 'Weight Management', status: 'Active', type: 'AI' },
+    { id: 3, name: 'Diabetes Risk', status: 'Active', type: 'Manual' },
+    { id: 5, name: 'Hypertension & Diabetes', status: 'Active', type: 'AI' },
+    { id: 7, name: 'Weight Fluctuation Alert', status: 'Draft', type: 'Manual' },
+    { id: 8, name: 'Fatigue & Vision Symptoms', status: 'Draft', type: 'AI' },
   ];
 
   // Create groups array for different categories
